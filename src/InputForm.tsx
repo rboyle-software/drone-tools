@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 
-export default function InputForm() {
+export default function InputForm(props: any) {
+
+  console.log(props);
 
 
   const [propDia, setPropDia] = useState('0');
@@ -42,6 +44,7 @@ export default function InputForm() {
       <form className='form' onSubmit={(e) => calculate(e)}>
 
         <div className='units'>UNITS:
+          <label>
           <input
             type='radio'
             name='units'
@@ -50,8 +53,9 @@ export default function InputForm() {
             onChange={(e) => setUnits(e.target.value)}
             >
           </input>
-          <label>MPH</label>
+          MPH</label>
 
+          <label>
           <input
             type='radio'
             name='units'
@@ -60,7 +64,7 @@ export default function InputForm() {
             onChange={(e) => setUnits(e.target.value)}
             >
           </input>
-          <label>KPH</label>
+          KPH</label>
         </div>
 
         <label>Prop Diameter (in / mm)</label>
@@ -87,7 +91,7 @@ export default function InputForm() {
         >
         </input>
 
-        <button type="submit">CALCULATE</button>
+        <button type="submit" className='submit'>CALCULATE</button>
 
       </form>
     </div>
