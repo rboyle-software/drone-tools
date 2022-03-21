@@ -3,15 +3,12 @@ import React, { useState } from 'react';
 
 export default function InputForm(props: any) {
 
-  console.log(props);
-
 
   const [propDia, setPropDia] = useState('0');
   const [battV, setBattV] = useState('0');
   const [motorKv, setMotorKv] = useState('0');
   const [units, setUnits] = useState('MPH');
   const [value, setValue] = useState(0);
-  console.log(value, units);
 
 
   const calculate = (e: React.FormEvent<HTMLFormElement>) => {
