@@ -14,7 +14,8 @@ function App() {
         </p>
       </header>
       <DisplayResult />
-      <InputForm />
+      <InputForm
+        test={'test'} />
     </div>
   );
 }
