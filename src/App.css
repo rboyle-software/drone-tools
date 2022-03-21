@@ -1,31 +1,91 @@
 .App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
   text-align: center;
+  color: #61dafb;
+  background-color: #282c34;
 }
 
 .App-logo {
-  height: 40vmin;
+  margin-top: 25px;
+  height: 10vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 5s linear;
   }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(143, 143, 143);
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.value {
+  width: 400px;
+  color: rgb(194, 63, 150);
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.units > input {
+  margin-left: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 40%;
+  height: 4em;
+  font-weight: bold;
+  color: rgb(194, 63, 150);
+  background-color: #282c34;
+  border: solid 2px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+button:hover {
+  color: #282c34;
+  background-color: rgb(194, 63, 150);
+  border-color: rgb(194, 63, 150);
+}
+
+form > label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+input[type=text] {
+  border: solid 2px rgb(194, 63, 150);
+  border-radius: 5px;
+  height: 1.5em;
+  width: 40%;
+  background-color: #282c34;
+  color: rgb(194, 63, 150);
+  font-size: 0.7em;
+  text-align: end;
+  padding-right: 30px;
+}
+
+::placeholder {
+  color: rgb(102, 62, 89);
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +95,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
