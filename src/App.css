@@ -32,10 +32,15 @@
     font-size: 1.5em;
   }
 
-  [type=radio] {
+  input[type=radio] {
     vertical-align: text-top;
     height: 30px !important;
     width: 30px !important;
+  }
+
+  input[type=text] {
+    height: 40px !important;
+    font-size: 1em !important;
   }
 }
 
@@ -80,6 +85,7 @@ button {
   border: solid 2px;
   border-radius: 5px;
   margin-top: 30px;
+  transition: ease-in-out 300ms;
 }
 
 button:hover {
