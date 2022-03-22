@@ -17,6 +17,7 @@ header > p {
   font-size: 1.5em;
   font-family: 'Exo', sans-serif;
   color: #61dafb;
+  filter: drop-shadow(0px 0px 2px #000000) drop-shadow(0px 0px 2px #26a0c2);
 }
 
 .App-logo {
@@ -64,7 +65,7 @@ header > p {
 
 .value {
   width: 400px;
-  color: rgb(194, 63, 150);
+  color: #c23f96;
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 50px;
@@ -90,7 +91,7 @@ button {
   width: 150px;
   height: 50px;
   font-weight: bold;
-  color: rgb(194, 63, 150);
+  color: #c23f96;
   background-color: #282c34;
   border: solid 2px;
   border-radius: 5px;
@@ -100,8 +101,8 @@ button {
 
 button:hover {
   color: #282c34;
-  background-color: rgb(194, 63, 150);
-  border-color: rgb(194, 63, 150);
+  background-color: #c23f96;
+  border-color: #c23f96;
 }
 
 form > label {
@@ -113,12 +114,12 @@ form > label {
 }
 
 input[type=text] {
-  border: solid 2px rgb(194, 63, 150);
+  border: solid 2px #c23f96;
   border-radius: 5px;
   height: 1.5em;
   width: 40%;
   background-color: #282c34;
-  color: rgb(194, 63, 150);
+  color: #c23f96;
   font-size: 0.7em;
   text-align: end;
   padding-right: 30px;
@@ -128,11 +129,11 @@ input[type=radio] {
   margin: 0px 5px 0px 20px;
   height: 15px;
   width: 15px;
-  accent-color: rgb(194, 63, 150);
+  accent-color: #c23f96;
 }
 
 ::placeholder {
-  color: rgb(102, 62, 89);
+  color: #61dafb80;
 }
 
 @keyframes App-logo-spin {
