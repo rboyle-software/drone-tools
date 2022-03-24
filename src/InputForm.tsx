@@ -68,6 +68,7 @@ export default function InputForm(props: any) {
         <input
           placeholder='0'
           type='number'
+          step='any'
           inputMode='decimal'
           onChange={(e) => setPropDia(e.target.value)}
         >
@@ -77,6 +78,7 @@ export default function InputForm(props: any) {
         <input
           type='number'
           inputMode='decimal'
+          step='any'
           placeholder='0'
           onChange={(e) => setBattV(e.target.value)}
         >
@@ -86,6 +88,7 @@ export default function InputForm(props: any) {
         <input
           type='number'
           inputMode='decimal'
+          step='any'
           placeholder='0'
           onChange={(e) => setMotorKv(e.target.value)}
         >
