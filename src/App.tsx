@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
-import env from 'react-dotenv';
+// import env from 'react-dotenv';
 import logo from './logo.png';
 import './App.css';
 
