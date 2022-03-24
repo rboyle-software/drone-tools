@@ -1,3 +1,15 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 body {
   overflow: hidden;
 }
@@ -49,7 +61,7 @@ header > p {
     width: 30px !important;
   }
 
-  input[type=text] {
+  input[type=number] {
     height: 40px !important;
     font-size: 1em !important;
   }
@@ -113,7 +125,7 @@ form > label {
   margin-bottom: 5px;
 }
 
-input[type=text] {
+input[type=number] {
   border: solid 2px #c23f96;
   border-radius: 5px;
   height: 1.5em;
