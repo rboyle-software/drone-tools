@@ -48,7 +48,11 @@ header > p {
   .App-logo {
     height: 20vmin;
   }
-  
+
+  .App-header > p {
+    font-size: 1.15em;
+  }
+
   .submit {
     width: 300px;
     height: 80px;
@@ -76,7 +80,7 @@ header > p {
 }
 
 .value {
-  width: 400px;
+  width: 350;
   color: #c23f96;
   font-size: 2em;
   font-weight: bold;
@@ -115,6 +119,8 @@ button:hover {
   color: #282c34;
   background-color: #c23f96;
   border-color: #c23f96;
+  filter: drop-shadow(0px 0px 15px #6d365a);
+
 }
 
 form > label {
@@ -142,6 +148,11 @@ input[type=radio] {
   height: 15px;
   width: 15px;
   accent-color: #c23f96;
+}
+
+input:focus {
+  outline-style: none;
+  filter: drop-shadow(0px 0px 10px #6d365a);
 }
 
 ::placeholder {
