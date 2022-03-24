@@ -9,13 +9,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          PROP TIP SPEED CALC
-        </p>
+        <p>PROP TIP SPEED CALC</p>
       </header>
       <DisplayResult />
-      <InputForm
-        test={'test'} />
+      <InputForm test={'test'} />
     </div>
   );
 }

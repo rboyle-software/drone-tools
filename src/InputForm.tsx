@@ -67,14 +67,16 @@ export default function InputForm(props: any) {
         <label>Prop Diameter (in / mm)</label>
         <input
           placeholder='0'
-          type='text'
+          type='number'
+          inputMode='decimal'
           onChange={(e) => setPropDia(e.target.value)}
         >
         </input>
 
         <label>Battery Voltage (V)</label>
         <input
-          type='text'
+          type='number'
+          inputMode='decimal'
           placeholder='0'
           onChange={(e) => setBattV(e.target.value)}
         >
@@ -82,7 +84,8 @@ export default function InputForm(props: any) {
 
         <label>Motor Rating (kV)</label>
         <input
-          type='text'
+          type='number'
+          inputMode='decimal'
           placeholder='0'
           onChange={(e) => setMotorKv(e.target.value)}
         >
