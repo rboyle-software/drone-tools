@@ -11,6 +11,7 @@ input[type=number] {
 }
 
 .inputs > label, .options > label {
+  font-size: 0.9em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +23,7 @@ input[type=number] {
   border: solid 2px #c23f96;
   border-radius: 5px;
   height: 1.5em;
-  width: 40%;
+  width: 50%;
   background-color: #282c34;
   color: #c23f96;
   font-size: 0.7em;
@@ -47,14 +48,15 @@ input:focus {
 }
 
 button {
-  width: 150px;
+  display: block;
   height: 50px;
+  width: 80%;
   font-weight: bold;
   color: #c23f96;
   background-color: #282c34;
   border: solid 2px;
   border-radius: 5px;
-  margin-top: 30px;
+  margin: 30px 0px 15px;
   transition: ease-in-out 300ms;
 }
 
@@ -67,18 +69,18 @@ button:hover {
 }
 
 .form {
+  font-family: 'B612';
+  font-size: 0.9em;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
   grid-template-areas: 
     'units units'
     'inputs options'
-    'inputs options'
-    'inputs options'
-    'inputs options'
   }
 
 .units {
+  font-size: 1.1em;
   display: flex;
   justify-content: center;
   grid-column: 1 / 3;

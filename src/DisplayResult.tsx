@@ -10,7 +10,7 @@ export default function DisplayResult(props: any) {
   return (
     <div className='outputs'>
 
-      {(props.location !== '') &&
+      {(props.location) &&
       <div className='weather'>
         <span>City: {props.location} | </span>
         <span>Current: {props.wxConditions} | </span>
@@ -25,9 +25,9 @@ export default function DisplayResult(props: any) {
         <span> {props.units === 'imperial' ? 'MPH' : 'KPH'}</span>
       </div>
 
-      {(props.mach1 !== 0) &&
-      <div className='weather'>
-        <span>Local Mach 1: {props.mach1}</span>
+      {(props.mach1Km !== 0 && props.location) &&
+      <div className='local-mach-1'>
+        {props.units === 'imperial' ? <span>Local Mach 1: {props.mach1Mi}MPH</span> : <span>Local Mach 1: {props.mach1Km}KPH</span>}
       </div>}
 
     </div>
