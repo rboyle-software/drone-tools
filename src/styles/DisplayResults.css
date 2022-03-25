@@ -1,0 +1,18 @@
+.outputs {
+  margin-bottom: 25px
+}
+
+.weather {
+  color: #c23f96;
+  font-size: 0.5em;
+}
+
+.output-value {
+  display: block;
+  width: 350;
+  color: #c23f96;
+  font-size: 2em;
+  font-weight: bold;
+  filter: drop-shadow(0px 0px 2px #00000080) drop-shadow(0px 0px 6px #8b2168);
+
+}

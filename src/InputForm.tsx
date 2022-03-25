@@ -1,100 +1,108 @@
-import React, { useState } from 'react';
+import './styles/InputForm.css'
 
 
 export default function InputForm(props: any) {
 
 
-  const [propDia, setPropDia] = useState('0');
-  const [battV, setBattV] = useState('0');
-  const [motorKv, setMotorKv] = useState('0');
-  const [units, setUnits] = useState('MPH');
-  const [value, setValue] = useState(0);
-
-
-  const calculate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const inches: number = parseInt(propDia);
-    const millimeters: number = parseInt(propDia);
-    const volts: number = parseInt(battV);
-    const killavolts: number = parseInt(motorKv);
-    const inPerMile: number = 63360;
-    const mmPerKm: number = 1000000;
-    const minPerHour: number = 60;
-
-    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(2));
-    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(2));
-
-    (units === 'MPH') && setValue(MPH);
-    (units === 'KPH') && setValue(KPH);
-
-  }
-
-
   return (
     <div className="input-form">
 
-      <div className='value'>
-        {value} {units}
-      </div>
-
-      <form className='form' onSubmit={(e) => calculate(e)}>
+      <form className='form' onSubmit={(e) => props.calculate(e)}>
 
         <div className='units'>UNITS:
           <label>
-          <input
-            type='radio'
-            name='units'
-            value='MPH'
-            checked={units === 'MPH'}
-            onChange={(e) => setUnits(e.target.value)}
-            >
-          </input>
-          MPH</label>
+            <input
+              type='radio'
+              name='units'
+              value='MPH'
+              checked={props.units === 'MPH'}
+              onChange={(e) => props.handleUnits(e.target.value)}
+              >
+            </input>
+            Imperial
+          </label>
 
           <label>
-          <input
-            type='radio'
-            name='units'
-            value='KPH'
-            checked={units === 'KPH'}
-            onChange={(e) => setUnits(e.target.value)}
-            >
-          </input>
-          KPH</label>
+            <input
+              type='radio'
+              name='units'
+              value='KPH'
+              checked={props.units === 'KPH'}
+              onChange={(e) => props.handleUnits(e.target.value)}
+              >
+            </input>
+            Metric
+          </label>
         </div>
 
-        <label>Prop Diameter (in / mm)</label>
-        <input
-          placeholder='0'
-          type='number'
-          step='any'
-          inputMode='decimal'
-          onChange={(e) => setPropDia(e.target.value)}
-        >
-        </input>
+        <div className='inputs'>
 
-        <label>Battery Voltage (V)</label>
-        <input
-          type='number'
-          inputMode='decimal'
-          step='any'
-          placeholder='0'
-          onChange={(e) => setBattV(e.target.value)}
-        >
-        </input>
+          <label>Prop Diameter {props.units === 'MPH' ? <span>(in.)</span> : <span>(mm.)</span>}</label>
 
-        <label>Motor Rating (kV)</label>
-        <input
-          type='number'
-          inputMode='decimal'
-          step='any'
-          placeholder='0'
-          onChange={(e) => setMotorKv(e.target.value)}
-        >
-        </input>
+          <input
+            placeholder='0'
+            type='number'
+            step='any'
+            inputMode='decimal'
+            onChange={(e) => props.handlePropDia(parseInt(e.target.value))}
+            >
+          </input>
 
-        <button type="submit" className='submit'>CALCULATE</button>
+          <label>Battery Voltage (V)</label>
+          <input
+            type='number'
+            inputMode='decimal'
+            step='any'
+            placeholder='0'
+            onChange={(e) => props.handleBattV(parseInt(e.target.value))}
+          >
+          </input>
+
+          <label>Motor Rating (kV)</label>
+          <input
+            type='number'
+            inputMode='decimal'
+            step='any'
+            placeholder='0'
+            onChange={(e) => props.handleMotorKv(parseInt(e.target.value))}
+          >
+          </input>
+
+          <button type="submit" className='submit'>CALCULATE</button>
+        </div>
+
+        <div className='options'>
+          <label>Zip Code
+            </label>
+            <input
+              type='text'
+              placeholder='0'
+              onChange={(e) => props.handleZip(e.target.value)}
+            >
+            </input>
+
+          <label>Altitude
+            </label>
+            <input
+              type='number'
+              inputMode='decimal'
+              step='any'
+              placeholder='0'
+            >
+            </input>
+
+          <label>Airspeed
+            </label>
+            <input
+              type='number'
+              inputMode='decimal'
+              step='any'
+              placeholder='0'
+            >
+            </input>
+
+          <button className='submit'>WEATHER</button>
+        </div>
 
       </form>
     </div>
