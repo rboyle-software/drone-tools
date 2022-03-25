@@ -14,7 +14,8 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
-    localMach1: 0,
+    localMach1Km: 0,
+    localMach1Mi: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
@@ -146,9 +147,31 @@ export default function App() {
     const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(2)) + airspeed;
     const displayVal = (state.units === 'imperial') ? MPH : KPH;
 
-    // TODO: calculate local Mach 1 based on estimated air temp at altitude
+    const localTemp_c = (state.altitude) ? conditions.temp_c - (state.altitude / 500) : conditions.temp_c;
+    const localMach1Km = parseInt(((331.3 + (0.6 * localTemp_c)) / 1000 * 3600).toFixed(1));
+    const localMach1Mi = parseInt((localMach1Km * 0.621371).toFixed(1));
 
-    setState({ ...state, valueDisplay: displayVal, valueImperial: MPH, valueMetric: KPH });
+    /*
+    TODO: calculate local Mach 1 based on estimated air temp at altitude
+    meters/second = 331.3 + (0.6 * {temp c})
+    source: http://www.sengpielaudio.com/calculator-speedsound.htm
+    */
+
+    setState({ 
+      ...state,
+      airspeed: airspeed,
+      valueDisplay: displayVal,
+      valueImperial: MPH,
+      valueMetric: KPH,
+    });
+
+    if (conditions.zip) {
+      setState({
+        ...state,
+        localMach1Km: localMach1Km,
+        localMach1Mi: localMach1Mi
+      });
+    }
 
   }
 
@@ -168,7 +191,8 @@ export default function App() {
         valueImperial={state.valueImperial}
         valueMetric={state.valueMetric}
         location={conditions.location}
-        mach1={state.localMach1}
+        mach1Km={state.localMach1Km}
+        mach1Mi={state.localMach1Mi}
         wxConditions={conditions.condition}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
