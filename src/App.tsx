@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
 import env from 'react-dotenv';
@@ -14,60 +14,55 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
-    latitude: 0,
     localMach1: 0,
-    locationName:'',
-    longitude: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
-    units: 'MPH',
+    units: 'imperial',
     valueDisplay: 0,
     valueMetric: 0,
     valueImperial: 0,
-    wxConditions: '',
-    wxHumidity: 0,
-    wxPressure: 0,
-    wxTemperature: 0,
-    zip: '',
   });
 
-  console.log('STATE', state.zip);
+  const [conditions, setConditions] = useState({
+    condition: '',
+    humidity: 0,
+    icon: '',
+    location:'',
+    pressure_in: 0,
+    pressure_mb: 0,
+    temp_c: 0,
+    temp_f: 0,
+    zip: ''
+  })
 
-  const getLocation = () => {
-    const zipQuery = `https://api.openweathermap.org/geo/1.0/zip?zip=${state.zip},US&appid=${env.WEATHER_KEY}`;
 
-    state.zip && fetch(zipQuery)
-    .then(res => res.json())
-    .then(location => {
-      setState({
-        ...state,
-        latitude: location.lat,
-        locationName: location.name,
-        longitude: location.lon
-      })
-    })
-  }
+  const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const wxQueryString = `https://api.weatherapi.com/v1/current.json?key=${env.WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
-  const getWeather = () => {
-    const wxQuery = `https://api.openweathermap.org/data/2.5/weather?lat=${state.latitude}&lon=${state.longitude}&appid=${env.WEATHER_KEY}&units=metric`;
+    if (conditions.zip === '') alert('Please enter a postal code!')
 
-    state.latitude && fetch(wxQuery)
+    conditions.zip && fetch(wxQueryString)
     .then(res => res.json())
     .then(wx => {
-      setState({
-        ...state,
-        wxConditions: wx.weather[0].main,
-        wxHumidity: wx.main.humidity,
-        wxPressure: wx.main.pressure,
-        wxTemperature: wx.main.temp
+      setConditions({
+        ...conditions,
+        condition: wx.current.condition.text,
+        humidity: wx.current.humidity,
+        icon: wx.current.condition.icon,
+        location: wx.location.name,
+        pressure_in: wx.current.pressure_in,
+        pressure_mb: wx.current.pressure_mb,
+        temp_c: wx.current.temp_c,
+        temp_f: wx.current.temp_f,
       })
     })
-  }
+    .catch(err => console.error(err))
+  }, [conditions])
 
 
   const handleUnits = (units: string) => {
-    console.log(units);
     setState({
       ...state,
       units: units
@@ -75,13 +70,16 @@ export default function App() {
   }
 
   const handlePropDia = (propDiameter: number) => {
+
+    // TODO: update text in field when units are updated
+
     let propDiaIn = 0;
     let propDiaMm = 0;
-    if (state.units === 'MPH') {
+    if (state.units === 'imperial') {
       propDiaIn = propDiameter;
       propDiaMm = parseFloat((propDiameter * 25.4).toFixed(0))
     }
-    if (state.units === 'KPH') {
+    if (state.units === 'metric') {
       propDiaIn = parseFloat((propDiameter / 25.4).toFixed(1));
       propDiaMm = propDiameter;
     }
@@ -106,9 +104,23 @@ export default function App() {
     });
   }
 
-  const handleZip = (zipCode: string) => {
+  const handleAirspeed = (airspeed: number) => {
     setState({
       ...state,
+      airspeed: airspeed
+    })
+  }
+
+  const handleAltitude = (altitude: number) => {
+    setState({
+      ...state,
+      altitude: altitude
+    })
+  }
+
+  const handleZip = (zipCode: string) => {
+    setConditions({
+      ...conditions,
       zip: zipCode
     })
   }
@@ -117,6 +129,10 @@ export default function App() {
   const calculate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (state.propDiaIn === 0 || state.propDiaMm === 0) alert('Please enter propeller diameter!')
+    else if (state.battV === 0) alert('Please enter battery voltage!')
+    else if (state.motorKv === 0) alert('Please enter motor power rating!')
+
     const inches: number = state.propDiaIn;
     const millimeters: number = state.propDiaIn * 25.4;
     const volts: number = state.battV;
@@ -124,14 +140,15 @@ export default function App() {
     const inPerMile: number = 63360;
     const mmPerKm: number = 1000000;
     const minPerHour: number = 60;
+    const airspeed = state.airspeed || 0;
 
-    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(2));
-    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(2));
-    const displayVal = (state.units === 'MPH') ? MPH : KPH;
+    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(2)) + airspeed;
+    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(2)) + airspeed;
+    const displayVal = (state.units === 'imperial') ? MPH : KPH;
+
+    // TODO: calculate local Mach 1 based on estimated air temp at altitude
 
     setState({ ...state, valueDisplay: displayVal, valueImperial: MPH, valueMetric: KPH });
-
-    console.log('CALCULATE', state);
 
   }
 
@@ -150,11 +167,14 @@ export default function App() {
         units={state.units}
         valueImperial={state.valueImperial}
         valueMetric={state.valueMetric}
-        locationName={state.locationName}
-        wxConditions={state.wxConditions}
-        wxTemp={state.wxTemperature}
-        wxHumidity={state.wxHumidity}
-        wxPressure={state.wxPressure}
+        location={conditions.location}
+        mach1={state.localMach1}
+        wxConditions={conditions.condition}
+        wxTempC={conditions.temp_c}
+        wxTempF={conditions.temp_f}
+        wxHumidity={conditions.humidity}
+        wxPressureMb={conditions.pressure_mb}
+        wxPressureIn={conditions.pressure_in}
         />
 
       <InputForm
@@ -163,18 +183,12 @@ export default function App() {
         handlePropDia={handlePropDia}
         handleBattV={handleBattV}
         handleMotorKv={handleMotorKv}
+        handleAirspeed={handleAirspeed}
+        handleAltitude={handleAltitude}
         handleZip={handleZip}
         calculate={calculate}
+        getConditions={getConditions}
       />
-
-      <div>
-        <button onClick={() => getLocation()}>
-          GET LOCATION
-        </button>
-        <button onClick={() => getWeather()}>
-          GET WEATHER
-        </button>
-      </div>
 
     </div>
 

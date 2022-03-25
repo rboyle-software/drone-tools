@@ -9,13 +9,13 @@ export default function InputForm(props: any) {
 
       <form className='form' onSubmit={(e) => props.calculate(e)}>
 
-        <div className='units'>UNITS:
+        <div className='units'>Units:
           <label>
             <input
               type='radio'
               name='units'
-              value='MPH'
-              checked={props.units === 'MPH'}
+              value='imperial'
+              checked={props.units === 'imperial'}
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
@@ -26,8 +26,8 @@ export default function InputForm(props: any) {
             <input
               type='radio'
               name='units'
-              value='KPH'
-              checked={props.units === 'KPH'}
+              value='metric'
+              checked={props.units === 'metric'}
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
@@ -37,7 +37,7 @@ export default function InputForm(props: any) {
 
         <div className='inputs'>
 
-          <label>Prop Diameter {props.units === 'MPH' ? <span>(in.)</span> : <span>(mm.)</span>}</label>
+          <label>Prop Dia.{props.units === 'imperial' ? ' (in)' : ' (mm)'}</label>
 
           <input
             placeholder='0'
@@ -48,7 +48,7 @@ export default function InputForm(props: any) {
             >
           </input>
 
-          <label>Battery Voltage (V)</label>
+          <label>Batt Volts (V)</label>
           <input
             type='number'
             inputMode='decimal'
@@ -58,7 +58,7 @@ export default function InputForm(props: any) {
           >
           </input>
 
-          <label>Motor Rating (kV)</label>
+          <label>Motor (kV)</label>
           <input
             type='number'
             inputMode='decimal'
@@ -72,36 +72,38 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='options'>
-          <label>Zip Code
-            </label>
-            <input
-              type='text'
-              placeholder='0'
-              onChange={(e) => props.handleZip(e.target.value)}
-            >
-            </input>
+          <label>Airspeed</label>
+          <input
+            type='number'
+            inputMode='decimal'
+            step='any'
+            placeholder='0'
+            onChange={(e) => props.handleAirspeed(parseInt(e.target.value))}
+          >
+          </input>
 
-          <label>Altitude
-            </label>
-            <input
-              type='number'
-              inputMode='decimal'
-              step='any'
-              placeholder='0'
-            >
-            </input>
+          <label>Altitude</label>
+          <input
+            type='number'
+            inputMode='decimal'
+            step='any'
+            placeholder='0'
+            onChange={(e) => props.handleAltitude(parseInt(e.target.value))}
+          >
+          </input>
 
-          <label>Airspeed
-            </label>
-            <input
-              type='number'
-              inputMode='decimal'
-              step='any'
-              placeholder='0'
-            >
-            </input>
+          <label>Zip Code</label>
+          <input
+            type='text'
+            placeholder='0'
+            onChange={(e) => props.handleZip(e.target.value)}
+          >
+          </input>
 
-          <button className='submit'>WEATHER</button>
+          <button
+            className='submit'
+            onClick={(e) => props.getConditions(e)}
+          >WEATHER</button>
         </div>
 
       </form>
