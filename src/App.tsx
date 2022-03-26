@@ -142,7 +142,7 @@ export default function App() {
     source: https://www.rcdronegood.com/brushless-motor-kv-to-rpm/
 
     2. calculate prop tip speed based on prop diameter and RPM
-    speed = (2 Pi R) x RPM
+    speed = (2 Pi R) * RPM
 
     3. calculate local Mach 1 based on estimated air temp at altitude
     meters/second = 331.3 + (0.6 * {temp c})

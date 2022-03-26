@@ -41,10 +41,6 @@
     font-size: 1em !important;
   }
 
-  .outputs {
-    width: 95%;
-  }
-
   [type=radio] {
     vertical-align: text-top;
     height: 30px !important;
