@@ -27,7 +27,7 @@
     font-size: 1em;
   }
 
-  .weather {
+  .weather, .local-mach-1 {
     font-size: 0.7em;
     margin-bottom: 10px;
   }
