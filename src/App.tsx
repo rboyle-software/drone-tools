@@ -41,7 +41,7 @@ export default function App() {
     e.preventDefault();
 
     // build query string using api key and user input zip code (or city)
-    const wxQueryString = `https://api.weatherapi.com/v1/current.json?key=${env.WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
+    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${env.WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
     // if no user location input, alert
     if (conditions.zip === '') alert('Please enter a postal code!');
@@ -77,8 +77,8 @@ export default function App() {
 
     // TODO: update text in field when units are updated
 
-    let propDiaIn = 0;
-    let propDiaMm = 0;
+    let propDiaIn: number = 0;
+    let propDiaMm: number = 0;
     // if MPH is selected, propDiaIn is user input value and propDiaMm is the conversion
     if (state.units === 'imperial') {
       propDiaIn = propDiameter;
@@ -178,11 +178,11 @@ export default function App() {
     const displayVal = (state.units === 'imperial') ? MPH : KPH;
 
     // calculate temperature at user input altitude OR local temp from API call
-    const localTemp_c = (state.altitude) ? conditions.temp_c - (state.altitude / 500) : conditions.temp_c;
+    const localTemp_c: number = (state.altitude) ? conditions.temp_c - (state.altitude / 500) : conditions.temp_c;
     // calculate local Mach 1 KPH using metric values
-    const localMach1Km = parseInt(((331.3 + (0.6 * localTemp_c)) / 1000 * 3600).toFixed(1));
+    const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1000 * 3600).toFixed(1));
     // calculate local Mach 1 MPH using KPH -> MPH conversion
-    const localMach1Mi = parseInt((localMach1Km * 0.621371).toFixed(1));
+    const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
 
     setState({ 
       ...state,
