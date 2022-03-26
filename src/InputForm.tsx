@@ -19,7 +19,7 @@ export default function InputForm(props: any) {
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
-            Imperial
+            MPH
           </label>
 
           <label>
@@ -31,7 +31,7 @@ export default function InputForm(props: any) {
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
-            Metric
+            KPH
           </label>
         </div>
 
@@ -44,7 +44,7 @@ export default function InputForm(props: any) {
             type='number'
             step='any'
             inputMode='decimal'
-            onChange={(e) => props.handlePropDia(parseInt(e.target.value))}
+            onChange={(e) => props.handlePropDia(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
             >
           </input>
 
@@ -54,8 +54,8 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleBattV(parseInt(e.target.value))}
-          >
+            onChange={(e) => props.handleBattV(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            >
           </input>
 
           <label>Motor (kV)</label>
@@ -64,8 +64,8 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleMotorKv(parseInt(e.target.value))}
-          >
+            onChange={(e) => props.handleMotorKv(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            >
           </input>
 
           <button type="submit" className='submit'>CALCULATE</button>
@@ -78,8 +78,8 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAirspeed(parseInt(e.target.value))}
-          >
+            onChange={(e) => props.handleAirspeed(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            >
           </input>
 
           <label>Altitude</label>
@@ -88,8 +88,8 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAltitude(parseInt(e.target.value))}
-          >
+            onChange={(e) => props.handleAltitude(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            >
           </input>
 
           <label>Zip Code</label>
@@ -97,13 +97,12 @@ export default function InputForm(props: any) {
             type='text'
             placeholder='0'
             onChange={(e) => props.handleZip(e.target.value)}
-          >
+            >
           </input>
 
-          <button
-            className='submit'
-            onClick={(e) => props.getConditions(e)}
-          >WEATHER</button>
+          <button className='submit' onClick={(e) => props.getConditions(e)}>
+          WEATHER
+          </button>
         </div>
 
       </form>

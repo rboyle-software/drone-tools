@@ -32,4 +32,5 @@ export default function DisplayResult(props: any) {
 
     </div>
   )
+
 }
