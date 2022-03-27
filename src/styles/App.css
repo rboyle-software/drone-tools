@@ -6,7 +6,9 @@
     transform: rotate(360deg);
   }
 
-}@media (prefers-reduced-motion: no-preference) {
+}
+
+@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 4s linear;
   }
@@ -28,7 +30,7 @@
   }
 
   .weather, .local-mach-1 {
-    font-size: 0.7em;
+    font-size: 14px;
     margin-bottom: 10px;
   }
 
