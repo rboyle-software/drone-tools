@@ -44,7 +44,7 @@ export default function InputForm(props: any) {
             type='number'
             step='any'
             inputMode='decimal'
-            onChange={(e) => props.handlePropDia(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            onChange={(e) => props.handlePropDia(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 
@@ -54,7 +54,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleBattV(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            onChange={(e) => props.handleBattV(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 
@@ -64,7 +64,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleMotorKv(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            onChange={(e) => props.handleMotorKv(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 
@@ -78,7 +78,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAirspeed(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            onChange={(e) => props.handleAirspeed(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 
@@ -88,7 +88,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAltitude(parseFloat(parseFloat(e.target.value).toFixed(2)) || 0)}
+            onChange={(e) => props.handleAltitude(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 

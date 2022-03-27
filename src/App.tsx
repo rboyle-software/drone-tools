@@ -1,10 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
-import env from 'react-dotenv';
 import logo from './logo.png';
 import './styles/App.css';
-
 
 
 export default function App() {
@@ -20,7 +18,6 @@ export default function App() {
     propDiaIn: 0,
     propDiaMm: 0,
     units: 'imperial',
-    valueDisplay: 0,
     valueMetric: 0,
     valueImperial: 0
   });
@@ -41,7 +38,7 @@ export default function App() {
     e.preventDefault();
 
     // build query string using api key and user input zip code (or city)
-    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${env.WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
+    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
     // if no user location input, alert
     if (conditions.zip === '') alert('Please enter a postal code!');
@@ -82,7 +79,7 @@ export default function App() {
     // if MPH is selected, propDiaIn is user input value and propDiaMm is the conversion
     if (state.units === 'imperial') {
       propDiaIn = propDiameter;
-      propDiaMm = parseFloat((propDiameter * 25.4).toFixed(0))
+      propDiaMm = parseFloat((propDiameter * 25.4).toFixed(1))
     }
     // if KPH is selected, propDiaMm is user input value and propDiaIn is the conversion
     if (state.units === 'metric') {
@@ -142,7 +139,7 @@ export default function App() {
     source: https://www.rcdronegood.com/brushless-motor-kv-to-rpm/
 
     2. calculate prop tip speed based on prop diameter and RPM
-    speed = (2 Pi R) * RPM
+    speed = (2πr) * RPM - circumference = distance tip distance per revolution
 
     3. calculate local Mach 1 based on estimated air temp at altitude
     meters/second = 331.3 + (0.6 * {temp c})
@@ -173,12 +170,13 @@ export default function App() {
     const minPerHour: number = 60;
 
     // initialize variables to calculated prop tip speeds
-    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(2)) + state.airspeed;
-    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(2)) + state.airspeed;
-    const displayVal = (state.units === 'imperial') ? MPH : KPH;
+    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(1)) + state.airspeed;
+    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(1)) + state.airspeed;
 
     // calculate temperature at user input altitude OR local temp from API call
-    const localTemp_c: number = (state.altitude) ? conditions.temp_c - (state.altitude / 500) : conditions.temp_c;
+    const localTemp_c: number = (state.altitude)
+      ? conditions.temp_c - (state.altitude / 500)
+      : conditions.temp_c;
     // calculate local Mach 1 KPH using metric values
     const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1000 * 3600).toFixed(1));
     // calculate local Mach 1 MPH using KPH -> MPH conversion
@@ -186,7 +184,6 @@ export default function App() {
 
     setState({ 
       ...state,
-      valueDisplay: displayVal,
       valueImperial: MPH,
       valueMetric: KPH,
       localMach1Km: localMach1Km,
