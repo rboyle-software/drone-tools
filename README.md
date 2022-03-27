@@ -9,7 +9,6 @@ Calculate tip speed and track values over time. Optimize settings to achieve max
 - [x] add input field for anticipated airspeed (convert knots to MPH?)
 - [x] API call for temp, pressure, humidity / display local Mach 1
 - [x] make it mobile browser-friendly
-- [ ] 
 
 <br><br>
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bba96309-cd3a-494c-90f9-cde59c2896a0/deploy-status)](https://app.netlify.com/sites/proptipspeedcalc/deploys)
