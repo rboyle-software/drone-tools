@@ -4,8 +4,8 @@ import './styles/DisplayResults.css'
 export default function DisplayResult(props: any) {
 
   // store imperial or metric temperature and pressure values based on current state of 'units'
-  const temperature = (props.units === 'imperial') ? `${props.wxTempF}f` : `${props.wxTempC}c`;
-  const pressure = (props.units === 'imperial') ? `${props.wxPressureIn}"Hg` : `${props.wxPressureMb}mb`;
+  const temperature: string = (props.units === 'imperial') ? `${props.wxTempF}f` : `${props.wxTempC}c`;
+  const pressure: string = (props.units === 'imperial') ? `${props.wxPressureIn}"Hg` : `${props.wxPressureMb}mb`;
 
 
   return (
