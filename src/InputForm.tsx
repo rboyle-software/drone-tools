@@ -40,6 +40,7 @@ export default function InputForm(props: any) {
           <label>Prop Dia.{props.units === 'imperial' ? ' (in)' : ' (mm)'}</label>
 
           <input
+            className='propDia'
             placeholder='0'
             type='number'
             step='any'
@@ -50,21 +51,23 @@ export default function InputForm(props: any) {
 
           <label>Batt Volts (V)</label>
           <input
+            className='battV'
             type='number'
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleBattV(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+            onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
 
           <label>Motor (kV)</label>
           <input
+            className='motorKv'
             type='number'
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleMotorKv(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+            onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
 
@@ -74,21 +77,23 @@ export default function InputForm(props: any) {
         <div className='options'>
           <label>Airspeed</label>
           <input
+            className='airspeed'
             type='number'
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAirspeed(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+            onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
 
           <label>Altitude</label>
           <input
+            className='altitude'
             type='number'
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleAltitude(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+            onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
 

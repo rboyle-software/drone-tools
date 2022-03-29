@@ -33,17 +33,19 @@ export default function App() {
     zip: ''
   });
 
-  // call to weatherapi.com to get local weather conditions
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    // call to weatherapi.com to get local weather conditions
+    // build query string using api key and user input zip code (or city)
+    // if no user location input, alert
+    // if user location input, make the call
+    // conditions state object is a dependency
+
     e.preventDefault();
 
-    // build query string using api key and user input zip code (or city)
     const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
-    // if no user location input, alert
     if (conditions.zip === '') alert('Please enter a postal code!');
 
-    // if user location input, make the call
     conditions.zip && fetch(wxQueryString)
     .then(res => res.json())
     .then(wx => {
@@ -56,14 +58,19 @@ export default function App() {
         pressure_mb: wx.current.pressure_mb,
         temp_c: wx.current.temp_c,
         temp_f: wx.current.temp_f,
-      });
+      })
     })
     .catch(err => console.error(err))
-  // conditions state object is a dependency
   }, [conditions]);
 
 
   const handleUnits = (units: string) => {
+    // update Prop Dia value in form input field when units change
+    const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
+    if (propDiameter) propDiameter.valueAsNumber = (units === 'imperial')
+      ? state.propDiaIn
+      : state.propDiaMm
+    // update units in state
     setState({
       ...state,
       units: units
@@ -71,22 +78,20 @@ export default function App() {
   }
 
   const handlePropDia = (propDiameter: number) => {
-
-    // TODO: update text in field when units are updated
+    // if MPH is selected, propDiaIn is user input value and propDiaMm is calculated
+    // if KPH is selected, propDiaMm is user input value and propDiaIn is calculated
+    // update propDiaIn and propDiaMm in state
 
     let propDiaIn: number = 0;
     let propDiaMm: number = 0;
-    // if MPH is selected, propDiaIn is user input value and propDiaMm is the conversion
     if (state.units === 'imperial') {
       propDiaIn = propDiameter;
       propDiaMm = parseFloat((propDiameter * 25.4).toFixed(1))
     }
-    // if KPH is selected, propDiaMm is user input value and propDiaIn is the conversion
     if (state.units === 'metric') {
       propDiaIn = parseFloat((propDiameter / 25.4).toFixed(1));
       propDiaMm = propDiameter;
     }
-    // update propDiaIn and propDiaMm in state
     setState({
       ...state,
       propDiaIn: propDiaIn,
@@ -94,46 +99,25 @@ export default function App() {
     });
   }
 
-  const handleBattV = (battV: number) => {
+  // handles all numeric inputs to the 'state' object
+  const handleNumericInput = (e: any) => {
+    const property: string = e.target.className;
+    const value: number = Math.round(e.target.valueAsNumber * 100) / 100 || 0;
     setState({
       ...state,
-      battV: battV
+      [property]: value
     });
-  }
-
-  const handleMotorKv = (motorKv: number) => {
-    setState({
-      ...state,
-      motorKv: motorKv
-    });
-  }
-
-  const handleAirspeed = (airspeed: number) => {
-    setState({
-      ...state,
-      airspeed: airspeed
-    })
-  }
-
-  const handleAltitude = (altitude: number) => {
-    setState({
-      ...state,
-      altitude: altitude
-    })
   }
 
   const handleZip = (zipCode: string) => {
     setConditions({
       ...conditions,
       zip: zipCode
-    })
+    });
   }
 
 
   const calculate = (e: React.FormEvent<HTMLFormElement>) => {
-    // prevent page reload on form submit
-    e.preventDefault();
-
     /*
     1. calculate motor unloaded RPM based on battery voltage and motor rating
     source: https://www.rcdronegood.com/brushless-motor-kv-to-rpm/
@@ -145,6 +129,9 @@ export default function App() {
     meters/second = 331.3 + (0.6 * {temp c})
     source: http://www.sengpielaudio.com/calculator-speedsound.htm
     */
+
+    // prevent page reload on form submit
+    e.preventDefault();
 
     // validation rules / alerts
     if (!state.propDiaIn || !state.propDiaMm) {
@@ -160,7 +147,7 @@ export default function App() {
       return;
     }
 
-    // initialize values required for calculations
+    // initialize values for calculations
     const inches: number = state.propDiaIn;
     const millimeters: number = state.propDiaIn * 25.4;
     const volts: number = state.battV;
@@ -204,28 +191,25 @@ export default function App() {
       </header>
 
       <DisplayResult
+        mach1Mi={state.localMach1Mi}
+        mach1Km={state.localMach1Km}
         units={state.units}
         valueImperial={state.valueImperial}
         valueMetric={state.valueMetric}
-        location={conditions.location}
-        mach1Km={state.localMach1Km}
-        mach1Mi={state.localMach1Mi}
         wxConditions={conditions.condition}
+        wxHumidity={conditions.humidity}
+        location={conditions.location}
+        wxPressureIn={conditions.pressure_in}
+        wxPressureMb={conditions.pressure_mb}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
-        wxHumidity={conditions.humidity}
-        wxPressureMb={conditions.pressure_mb}
-        wxPressureIn={conditions.pressure_in}
         />
 
       <InputForm
         units={state.units}
         handleUnits={handleUnits}
         handlePropDia={handlePropDia}
-        handleBattV={handleBattV}
-        handleMotorKv={handleMotorKv}
-        handleAirspeed={handleAirspeed}
-        handleAltitude={handleAltitude}
+        handleNumericInput={handleNumericInput}
         handleZip={handleZip}
         calculate={calculate}
         getConditions={getConditions}
