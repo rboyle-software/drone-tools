@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build-local": "react-scripts build",
-    "build": "NODE_ENV=production && react-scripts build && serve -s build",
+    "build": "react-scripts build",
+    "build1": "NODE_ENV=production && react-scripts build && serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
