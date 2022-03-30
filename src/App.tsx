@@ -33,6 +33,7 @@ export default function App() {
     zip: ''
   });
 
+
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     // call to weatherapi.com to get local weather conditions
     // build query string using api key and user input zip code (or city)
@@ -44,7 +45,9 @@ export default function App() {
 
     const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
-    if (conditions.zip === '') alert('Please enter a postal code!');
+    if (conditions.zip === '') {
+      alert('Please enter a postal code!');
+    }
 
     conditions.zip && fetch(wxQueryString)
     .then(res => res.json())
