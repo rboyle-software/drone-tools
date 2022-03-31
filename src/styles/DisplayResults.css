@@ -1,6 +1,6 @@
 .outputs {
   width: 90%;
-  margin-bottom: 25px
+  margin-bottom: 25px;
 }
 
 .weather, .local-mach-1 {
@@ -16,7 +16,7 @@ hr {
 }
 
 .output-value {
-  display: block;
+  /* display: block; */
   /* width: 100%; */
   color: #c23f96;
   font-size: 2em;
