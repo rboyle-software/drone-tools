@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
 import logo from './logo.png';
+import Modal from './Modal';
 import './styles/App.css';
 
 
@@ -33,6 +34,11 @@ export default function App() {
     zip: ''
   });
 
+  const [modal, setModal] = useState({
+    display: false,
+    message: '',
+  });
+
 
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     // call to weatherapi.com to get local weather conditions
@@ -43,11 +49,15 @@ export default function App() {
 
     e.preventDefault();
 
-    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
-
     if (conditions.zip === '') {
-      alert('Please enter a postal code!');
+      // alert('Please enter a postal code!');
+      setModal({
+        ...modal, display: true, message: 'Please enter a postal code!'
+      });
+      return;
     }
+
+    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
     conditions.zip && fetch(wxQueryString)
     .then(res => res.json())
@@ -64,7 +74,7 @@ export default function App() {
       })
     })
     .catch(err => console.error(err))
-  }, [conditions]);
+  }, [conditions, modal]);
 
 
   const handleUnits = (units: string) => {
@@ -119,6 +129,12 @@ export default function App() {
     });
   }
 
+  const handleDismiss = () => {
+    setModal({
+      ...modal, display: false, message: ''
+    })
+  }
+
 
   const calculate = (e: React.FormEvent<HTMLFormElement>) => {
     /*
@@ -138,15 +154,24 @@ export default function App() {
 
     // validation rules / alerts
     if (!state.propDiaIn || !state.propDiaMm) {
-      alert('Please enter propeller diameter!');
+      // alert('Please enter propeller diameter!');
+      setModal({
+        ...modal, display: true, message: 'Please enter propeller diameter!'
+      });
       return;
     }
     else if (!state.battV) {
-      alert('Please enter battery voltage!');
+      // alert('Please enter battery voltage!');
+      setModal({
+        ...modal, display: true, message: 'Please enter battery voltage!'
+      });
       return;
     }
     else if (!state.motorKv) {
-      alert('Please enter motor power rating!');
+      // alert('Please enter motor power rating!');
+      setModal({
+        ...modal, display: true, message: 'Please enter motor power rating!'
+      });
       return;
     }
 
@@ -186,14 +211,19 @@ export default function App() {
   return (
     <div className="App">
 
-      <header className="App-header">
-
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>PROP TIP SPEED CALC</p>
-
+      <header className={`App-header ${modal.display && 'modal-blur'}`}>
+        <img src={logo} className="App-logo" alt="spinning-logo" />
+        <p>DRONE TOOLS</p>
       </header>
 
+      {modal.display &&
+      <Modal
+        dismissModal={handleDismiss}
+        message={modal.message}
+      />}
+
       <DisplayResult
+        blur={modal.display}
         mach1Mi={state.localMach1Mi}
         mach1Km={state.localMach1Km}
         units={state.units}
@@ -209,6 +239,7 @@ export default function App() {
         />
 
       <InputForm
+        blur={modal.display}
         units={state.units}
         handleUnits={handleUnits}
         handlePropDia={handlePropDia}

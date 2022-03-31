@@ -79,3 +79,7 @@ header > p {
   height: 10vmin;
   pointer-events: none;
 }
+
+.modal-blur {
+  filter: blur(2px);
+}

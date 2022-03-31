@@ -1,0 +1,33 @@
+.modal {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  font-family: B612, sans-serif;
+  background-color: #282c34;
+  border: solid 2px #c23f96;
+  border-radius: 10px;
+  filter: drop-shadow(0px 0px 15px black);
+  z-index: 1;
+  animation: appear 300ms;
+}
+
+.modal > button {
+  margin-top: 10%;
+  font-weight: bold;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

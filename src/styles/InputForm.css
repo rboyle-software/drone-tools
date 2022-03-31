@@ -69,7 +69,7 @@ button:hover {
 }
 
 .form {
-  font-family: 'B612';
+  font-family: 'B612', sans-serif;
   font-size: 0.9em;
   display: grid;
   grid-template-columns: 50% 50%;
