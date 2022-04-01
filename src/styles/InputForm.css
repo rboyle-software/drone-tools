@@ -97,12 +97,3 @@ button:hover {
   justify-items: center;
   align-items: center;
 }
-
-.diameter-units {
-  position: relative;
-  display: none;
-  /* transform: translate(-50px, 55px); */
-  color: #c23f96;
-  font-size: 0.7em;
-  z-index: 1;
-}
