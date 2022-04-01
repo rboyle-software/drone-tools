@@ -5,7 +5,11 @@ export default function InputForm(props: any) {
 
 
   return (
-    <div className={`input-form ${props.blur && 'modal-blur'}`}>
+    <div
+      className={`input-form ${props.blur
+        ? 'modal-blur'
+        : 'no-blur'}`}
+    >
 
       <form className='form' onSubmit={(e) => props.calculate(e)}>
 

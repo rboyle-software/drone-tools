@@ -1,25 +1,37 @@
 .modal {
+  position: fixed;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   padding: 25px;
   font-family: B612, sans-serif;
+  color: #61dafb;
   background-color: #282c34;
   border: solid 2px #c23f96;
   border-radius: 10px;
   filter: drop-shadow(0px 0px 15px black);
-  z-index: 1;
-  animation: appear 300ms;
+  z-index: 2;
 }
 
 .modal > button {
   margin-top: 10%;
   font-weight: bold;
+}
+
+.fade-in {
+  animation: appear 300ms;
+}
+
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: #282c34a4;
+  z-index: 1;
 }
 
 @keyframes appear {
@@ -30,4 +42,3 @@
     opacity: 1;
   }
 }
-

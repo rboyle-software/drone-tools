@@ -5,15 +5,17 @@ export default function Modal(props: any) {
 
 
   return (
-    <div
-      className='modal'
-    >
-      {props.message}
-      <button
-        onClick={() => props.dismissModal()}
+    <div className='overlay'>
+      <div
+        className={`modal ${props.blur && 'fade-in'}`}
       >
-        OKAY!
-      </button>
+        {props.message}
+        <button
+          onClick={() => props.dismissModal()}
+        >
+          OKAY!
+        </button>
+      </div>
     </div>
   )
 }

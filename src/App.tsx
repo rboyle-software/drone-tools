@@ -131,7 +131,9 @@ export default function App() {
 
   const handleDismiss = () => {
     setModal({
-      ...modal, display: false, message: ''
+      ...modal,
+      display: false,
+      message: ''
     })
   }
 
@@ -211,7 +213,11 @@ export default function App() {
   return (
     <div className="App">
 
-      <header className={`App-header ${modal.display && 'modal-blur'}`}>
+      <header
+        className={`App-header ${modal.display
+          ? 'modal-blur'
+          : 'no-blur'}`}
+      >
         <img src={logo} className="App-logo" alt="spinning-logo" />
         <p>DRONE TOOLS</p>
       </header>
@@ -220,10 +226,10 @@ export default function App() {
       <Modal
         dismissModal={handleDismiss}
         message={modal.message}
+        blur={modal.display}
       />}
 
       <DisplayResult
-        blur={modal.display}
         mach1Mi={state.localMach1Mi}
         mach1Km={state.localMach1Km}
         units={state.units}
@@ -236,10 +242,10 @@ export default function App() {
         wxPressureMb={conditions.pressure_mb}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
+        blur={modal.display}
         />
 
       <InputForm
-        blur={modal.display}
         units={state.units}
         handleUnits={handleUnits}
         handlePropDia={handlePropDia}
@@ -247,6 +253,7 @@ export default function App() {
         handleZip={handleZip}
         calculate={calculate}
         getConditions={getConditions}
+        blur={modal.display}
       />
 
     </div>
