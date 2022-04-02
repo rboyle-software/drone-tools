@@ -35,8 +35,8 @@ export default function App() {
   });
 
   const [modal, setModal] = useState({
-    display: false,
-    message: '',
+    modalDisplay: false,
+    modalMessage: '',
   });
 
 
@@ -52,7 +52,7 @@ export default function App() {
     if (conditions.zip === '') {
       // alert('Please enter a postal code!');
       setModal({
-        ...modal, display: true, message: 'Please enter a postal code!'
+        ...modal, modalDisplay: true, modalMessage: 'Please enter a postal code!'
       });
       return;
     }
@@ -132,8 +132,8 @@ export default function App() {
   const handleDismiss = () => {
     setModal({
       ...modal,
-      display: false,
-      message: ''
+      modalDisplay: false,
+      modalMessage: ''
     })
   }
 
@@ -158,21 +158,21 @@ export default function App() {
     if (!state.propDiaIn || !state.propDiaMm) {
       // alert('Please enter propeller diameter!');
       setModal({
-        ...modal, display: true, message: 'Please enter propeller diameter!'
+        ...modal, modalDisplay: true, modalMessage: 'Please enter propeller diameter!'
       });
       return;
     }
     else if (!state.battV) {
       // alert('Please enter battery voltage!');
       setModal({
-        ...modal, display: true, message: 'Please enter battery voltage!'
+        ...modal, modalDisplay: true, modalMessage: 'Please enter battery voltage!'
       });
       return;
     }
     else if (!state.motorKv) {
       // alert('Please enter motor power rating!');
       setModal({
-        ...modal, display: true, message: 'Please enter motor power rating!'
+        ...modal, modalDisplay: true, modalMessage: 'Please enter motor power rating!'
       });
       return;
     }
@@ -183,7 +183,7 @@ export default function App() {
     const volts: number = state.battV;
     const killavolts: number = state.motorKv;
     const inPerMile: number = 63360;
-    const mmPerKm: number = 1000000;
+    const mmPerKm: number = 1e6;
     const minPerHour: number = 60;
 
     // initialize variables to calculated prop tip speeds
@@ -195,7 +195,7 @@ export default function App() {
       ? conditions.temp_c - (state.altitude / 500)
       : conditions.temp_c;
     // calculate local Mach 1 KPH using metric values
-    const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1000 * 3600).toFixed(1));
+    const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1e3 * 3600).toFixed(1));
     // calculate local Mach 1 MPH using KPH -> MPH conversion
     const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
 
@@ -214,7 +214,7 @@ export default function App() {
     <div className="App">
 
       <header
-        className={`App-header ${modal.display
+        className={`App-header ${modal.modalDisplay
           ? 'modal-blur'
           : 'no-blur'}`}
       >
@@ -222,11 +222,11 @@ export default function App() {
         <p>DRONE TOOLS</p>
       </header>
 
-      {modal.display &&
+      {modal.modalDisplay &&
       <Modal
         dismissModal={handleDismiss}
-        message={modal.message}
-        blur={modal.display}
+        message={modal.modalMessage}
+        blur={modal.modalDisplay}
       />}
 
       <DisplayResult
@@ -242,7 +242,7 @@ export default function App() {
         wxPressureMb={conditions.pressure_mb}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
-        blur={modal.display}
+        blur={modal.modalDisplay}
         />
 
       <InputForm
@@ -253,7 +253,7 @@ export default function App() {
         handleZip={handleZip}
         calculate={calculate}
         getConditions={getConditions}
-        blur={modal.display}
+        blur={modal.modalDisplay}
       />
 
     </div>
