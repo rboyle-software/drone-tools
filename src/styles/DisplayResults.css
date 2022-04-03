@@ -1,4 +1,6 @@
 .outputs {
+  display: flex;
+  flex-direction: column;
   width: 90%;
   margin-bottom: 25px;
 }
@@ -8,18 +10,13 @@
   font-size: 16px;
 }
 
-hr {
-  color: #c23f96;
-  font-size: 0.5em;
-  border-color: #c23f96;
-  background-color: #c23f96;
-}
-
 .output-value {
-  /* display: block; */
-  /* width: 100%; */
   color: #c23f96;
   font-size: 2em;
   font-weight: bold;
   filter: drop-shadow(0px 0px 2px #00000080) drop-shadow(0px 0px 6px #8b2168);
+}
+
+.outputs > * > p {
+  margin: 0;
 }

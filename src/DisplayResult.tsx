@@ -18,26 +18,22 @@ export default function DisplayResult(props: any) {
       { /* display current local weather info if data has been fetched from the weather API */ }
       {(props.location) &&
       <div className='weather'>
-        <span>City: {props.location} | </span>
-        <span>Current: {props.wxConditions} | </span>
-        <span>Temp: {temperature} | </span>
-        <span>Humidity: {props.wxHumidity}% | </span>
-        <span>Pressure: {pressure}</span>
+        <p>City: {props.location} | Current: {props.wxConditions} | Temp: {temperature} | Humidity: {props.wxHumidity}% | Pressure: {pressure}</p>
       </div>}
 
       { /* display imperial or metric calculated value based on current state of 'units' */ }
       <div className='output-value'>
         {props.units === 'imperial'
-          ? <span>{props.valueImperial} MPH</span>
-          : <span>{props.valueMetric} KPH</span>}
+          ? <p>{props.valueImperial} MPH</p>
+          : <p>{props.valueMetric} KPH</p>}
       </div>
 
       { /* if local mach 1 has been calculated and weather info has been fetched, display local mach 1 */ }
       {(props.mach1Km !== 0 && props.location) &&
       <div className='local-mach-1'>
         {props.units === 'imperial'
-          ? <span>Local Mach 1: {props.mach1Mi}MPH</span>
-          : <span>Local Mach 1: {props.mach1Km}KPH</span>}
+          ? <p>Local Mach 1: {props.mach1Mi}MPH</p>
+          : <p>Local Mach 1: {props.mach1Km}KPH</p>}
       </div>}
 
     </div>
