@@ -52,14 +52,21 @@ export default function App() {
     if (conditions.zip === '') {
       // alert('Please enter a postal code!');
       setModal({
-        ...modal, modalDisplay: true, modalMessage: 'Please enter a postal code!'
+        ...modal,
+        modalDisplay: true,
+        modalMessage: 'Please enter a postal code!'
       });
       return;
     }
 
     const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
 
-    conditions.zip && fetch(wxQueryString)
+    conditions.zip && fetch(wxQueryString, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(res => res.json())
     .then(wx => {
       setConditions({
@@ -80,14 +87,16 @@ export default function App() {
   const handleUnits = (units: string) => {
     // update Prop Dia value in form input field when units change
     const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
-    if (propDiameter) propDiameter.valueAsNumber = (units === 'imperial')
+    if (propDiameter) {
+      propDiameter.valueAsNumber = (units === 'imperial')
       ? state.propDiaIn
-      : state.propDiaMm
-    // update units in state
-    setState({
-      ...state,
-      units: units
-    });
+      : state.propDiaMm;
+      // update units in state
+      setState({
+        ...state,
+        units: units
+      });
+    }
   }
 
   const handlePropDia = (propDiameter: number) => {
@@ -99,7 +108,7 @@ export default function App() {
     let propDiaMm: number = 0;
     if (state.units === 'imperial') {
       propDiaIn = propDiameter;
-      propDiaMm = parseFloat((propDiameter * 25.4).toFixed(1))
+      propDiaMm = parseFloat((propDiameter * 25.4).toFixed(1));
     }
     if (state.units === 'metric') {
       propDiaIn = parseFloat((propDiameter / 25.4).toFixed(1));
@@ -113,7 +122,7 @@ export default function App() {
   }
 
   // handles all numeric inputs to the 'state' object
-  const handleNumericInput = (e: any) => {
+  const handleNumericInput = (e: React.BaseSyntheticEvent) => {
     const property: string = e.target.className;
     const value: number = Math.round(e.target.valueAsNumber * 100) / 100 || 0;
     setState({
