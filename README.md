@@ -1,6 +1,5 @@
-# PROP TIP SPEED CALC
-Calculate tip speed and track values over time. Optimize settings to achieve maximum efficiency.
-
+# DRONE TOOLS
+Calculate propeller tip speed based on local conditions. Optimize settings to achieve maximum efficiency.
 
 - [x] RPM * Prop Max Circumference over Distance / Time = Prop Tip Speed
 - [x] Prop Tip Speed + Airspeed = Max Tip Speed?
