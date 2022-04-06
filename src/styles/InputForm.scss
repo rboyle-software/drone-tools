@@ -1,6 +1,6 @@
-$main-gray: rgb(32, 35, 42);
-$main-blue: rgb(100, 220, 250);
-$main-magenta: rgb(195, 65, 150);
+$main-gray: rgb(26, 28, 34);
+$main-blue: rgb(97, 219, 250);
+$main-magenta: rgb(201, 83, 160);
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -58,7 +58,7 @@ button {
   font-weight: bold;
   color: $main-magenta;
   background-color: $main-gray;
-  border: solid 2px;
+  border: solid 2px $main-magenta;
   border-radius: 5px;
   margin: 30px 0px 15px;
   transition: ease-in-out 300ms;
@@ -67,9 +67,7 @@ button {
 button:hover {
   color: $main-gray;
   background-color: $main-magenta;
-  border-color: $main-magenta;
   filter: drop-shadow(0px 0px 15px rgb(109, 54, 90));
-
 }
 
 .form {
