@@ -1,4 +1,4 @@
-import './styles/DisplayResults.css'
+import './styles/DisplayResults.scss'
 
 
 export default function DisplayResult(props: any) {

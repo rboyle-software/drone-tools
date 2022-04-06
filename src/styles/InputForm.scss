@@ -1,3 +1,7 @@
+$main-gray: rgb(32, 35, 42);
+$main-blue: rgb(100, 220, 250);
+$main-magenta: rgb(195, 65, 150);
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -20,12 +24,12 @@ input[type=number] {
 }
 
 [type=number], [type=text] {
-  border: solid 2px #c23f96;
+  border: solid 2px $main-magenta;
   border-radius: 5px;
   height: 1.5em;
   width: 50%;
-  background-color: #282c34;
-  color: #c23f96;
+  background-color: $main-gray;
+  color: $main-magenta;
   font-size: 0.7em;
   text-align: end;
   padding-right: 30px;
@@ -35,12 +39,12 @@ input[type=number] {
   margin: 0px 5px 0px 20px;
   height: 15px;
   width: 15px;
-  accent-color: #c23f96;
+  accent-color: $main-magenta;
 }
 
 input:focus {
   outline-style: none;
-  filter: drop-shadow(0px 0px 10px #6d365a);
+  filter: drop-shadow(0px 0px 10px rgb(109, 54, 90));
 }
 
 ::placeholder {
@@ -52,8 +56,8 @@ button {
   height: 50px;
   width: 80%;
   font-weight: bold;
-  color: #c23f96;
-  background-color: #282c34;
+  color: $main-magenta;
+  background-color: $main-gray;
   border: solid 2px;
   border-radius: 5px;
   margin: 30px 0px 15px;
@@ -61,10 +65,10 @@ button {
 }
 
 button:hover {
-  color: #282c34;
-  background-color: #c23f96;
-  border-color: #c23f96;
-  filter: drop-shadow(0px 0px 15px #6d365a);
+  color: $main-gray;
+  background-color: $main-magenta;
+  border-color: $main-magenta;
+  filter: drop-shadow(0px 0px 15px rgb(109, 54, 90));
 
 }
 

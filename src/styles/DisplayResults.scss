@@ -1,3 +1,7 @@
+$main-gray: rgb(32, 35, 42);
+$main-blue: rgb(100, 220, 250);
+$main-magenta: rgb(195, 65, 150);
+
 .outputs {
   display: flex;
   flex-direction: column;
@@ -6,15 +10,15 @@
 }
 
 .weather, .local-mach-1 {
-  color: #c23f96;
+  color: $main-magenta;
   font-size: 16px;
 }
 
 .output-value {
-  color: #c23f96;
+  color: $main-magenta;
   font-size: 2em;
   font-weight: bold;
-  filter: drop-shadow(0px 0px 2px #00000080) drop-shadow(0px 0px 6px #8b2168);
+  filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(0px 0px 6px #8b2168);
 }
 
 .outputs > * > p {

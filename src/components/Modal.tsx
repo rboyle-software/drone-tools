@@ -1,4 +1,4 @@
-import './styles/Modal.css'
+import '../styles/Modal.scss'
 
 
 export default function Modal(props: any) {

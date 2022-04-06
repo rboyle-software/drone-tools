@@ -1,3 +1,7 @@
+$main-gray: rgb(32, 35, 42);
+$main-blue: rgb(100, 220, 250);
+$main-magenta: rgb(195, 65, 150);
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -59,8 +63,8 @@
 header > p {
   font-size: 1.5em;
   font-family: 'Exo', sans-serif;
-  color: #61dafb;
-  filter: drop-shadow(0px 0px 2px #000000) drop-shadow(0px 0px 4px #26a0c2);
+  color: $main-blue;
+  filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(0px 0px 4px rgb(40, 160, 195));
 }
 
 .App {
@@ -71,8 +75,8 @@ header > p {
   align-items: center;
   font-size: calc(10px + 2vmin);
   text-align: center;
-  color: #61dafb;
-  background-color: #282c34;
+  color: $main-blue;
+  background-color: $main-gray;
 }
 
 .App-logo {
