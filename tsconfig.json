@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "temp/the-math.js"  ]
+, "temp/the-math.js", "__test__/setupTests.ts"  ]
 }

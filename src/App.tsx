@@ -2,14 +2,14 @@ import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
 import logo from './logo.png';
-import Modal from './Modal';
-import './styles/App.css';
+import Modal from './components/Modal';
+import './styles/App.scss';
 
 
 export default function App() {
 
 
-  const [state, setState] = useState({
+  const [inputs, setInputs] = useState({
     airspeed: 0,
     altitude: 0,
     battV: 0,
@@ -89,11 +89,11 @@ export default function App() {
     const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
     if (propDiameter) {
       propDiameter.valueAsNumber = (units === 'imperial')
-      ? state.propDiaIn
-      : state.propDiaMm;
+      ? inputs.propDiaIn
+      : inputs.propDiaMm;
       // update units in state
-      setState({
-        ...state,
+      setInputs({
+        ...inputs,
         units: units
       });
     }
@@ -106,16 +106,16 @@ export default function App() {
 
     let propDiaIn: number = 0;
     let propDiaMm: number = 0;
-    if (state.units === 'imperial') {
+    if (inputs.units === 'imperial') {
       propDiaIn = propDiameter;
       propDiaMm = parseFloat((propDiameter * 25.4).toFixed(1));
     }
-    if (state.units === 'metric') {
+    if (inputs.units === 'metric') {
       propDiaIn = parseFloat((propDiameter / 25.4).toFixed(1));
       propDiaMm = propDiameter;
     }
-    setState({
-      ...state,
+    setInputs({
+      ...inputs,
       propDiaIn: propDiaIn,
       propDiaMm: propDiaMm
     });
@@ -125,8 +125,8 @@ export default function App() {
   const handleNumericInput = (e: React.BaseSyntheticEvent) => {
     const property: string = e.target.className;
     const value: number = Math.round(e.target.valueAsNumber * 100) / 100 || 0;
-    setState({
-      ...state,
+    setInputs({
+      ...inputs,
       [property]: value
     });
   }
@@ -164,21 +164,21 @@ export default function App() {
     e.preventDefault();
 
     // validation rules / alerts
-    if (!state.propDiaIn || !state.propDiaMm) {
+    if (!inputs.propDiaIn || !inputs.propDiaMm) {
       // alert('Please enter propeller diameter!');
       setModal({
         ...modal, modalDisplay: true, modalMessage: 'Please enter propeller diameter!'
       });
       return;
     }
-    else if (!state.battV) {
+    else if (!inputs.battV) {
       // alert('Please enter battery voltage!');
       setModal({
         ...modal, modalDisplay: true, modalMessage: 'Please enter battery voltage!'
       });
       return;
     }
-    else if (!state.motorKv) {
+    else if (!inputs.motorKv) {
       // alert('Please enter motor power rating!');
       setModal({
         ...modal, modalDisplay: true, modalMessage: 'Please enter motor power rating!'
@@ -187,29 +187,29 @@ export default function App() {
     }
 
     // initialize values for calculations
-    const inches: number = state.propDiaIn;
-    const millimeters: number = state.propDiaIn * 25.4;
-    const volts: number = state.battV;
-    const killavolts: number = state.motorKv;
+    const inches: number = inputs.propDiaIn;
+    const millimeters: number = inputs.propDiaIn * 25.4;
+    const volts: number = inputs.battV;
+    const killavolts: number = inputs.motorKv;
     const inPerMile: number = 63360;
     const mmPerKm: number = 1e6;
     const minPerHour: number = 60;
 
     // initialize variables to calculated prop tip speeds
-    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(1)) + state.airspeed;
-    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(1)) + state.airspeed;
+    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
+    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
 
     // calculate temperature at user input altitude OR local temp from API call
-    const localTemp_c: number = (state.altitude)
-      ? conditions.temp_c - (state.altitude / 500)
+    const localTemp_c: number = (inputs.altitude)
+      ? conditions.temp_c - (inputs.altitude / 500)
       : conditions.temp_c;
     // calculate local Mach 1 KPH using metric values
     const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1e3 * 3600).toFixed(1));
     // calculate local Mach 1 MPH using KPH -> MPH conversion
     const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
 
-    setState({ 
-      ...state,
+    setInputs({ 
+      ...inputs,
       valueImperial: MPH,
       valueMetric: KPH,
       localMach1Km: localMach1Km,
@@ -239,11 +239,11 @@ export default function App() {
       />}
 
       <DisplayResult
-        mach1Mi={state.localMach1Mi}
-        mach1Km={state.localMach1Km}
-        units={state.units}
-        valueImperial={state.valueImperial}
-        valueMetric={state.valueMetric}
+        mach1Mi={inputs.localMach1Mi}
+        mach1Km={inputs.localMach1Km}
+        units={inputs.units}
+        valueImperial={inputs.valueImperial}
+        valueMetric={inputs.valueMetric}
         wxConditions={conditions.condition}
         wxHumidity={conditions.humidity}
         location={conditions.location}
@@ -255,7 +255,7 @@ export default function App() {
         />
 
       <InputForm
-        units={state.units}
+        units={inputs.units}
         handleUnits={handleUnits}
         handlePropDia={handlePropDia}
         handleNumericInput={handleNumericInput}

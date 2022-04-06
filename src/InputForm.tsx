@@ -1,4 +1,4 @@
-import './styles/InputForm.css'
+import './styles/InputForm.scss'
 
 
 export default function InputForm(props: any) {

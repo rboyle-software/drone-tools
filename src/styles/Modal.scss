@@ -1,3 +1,7 @@
+$main-gray: rgb(32, 35, 42);
+$main-blue: rgb(100, 220, 250);
+$main-magenta: rgb(195, 65, 150);
+
 .modal {
   position: fixed;
   overflow: hidden;
@@ -9,11 +13,11 @@
   transform: translate(-50%, -50%);
   padding: 25px;
   font-family: B612, sans-serif;
-  color: #61dafb;
-  background-color: #282c34;
-  border: solid 2px #c23f96;
+  color: $main-blue;
+  background-color: $main-gray;
+  border: solid 2px $main-magenta;
   border-radius: 10px;
-  filter: drop-shadow(0px 0px 15px black);
+  filter: drop-shadow(0px 0px 15px rgb(0, 0, 0));
   z-index: 2;
 }
 
@@ -30,7 +34,7 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: #282c34a4;
+  background-color: rgba(40, 44, 52, 0.5);
   z-index: 1;
 }
 
