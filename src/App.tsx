@@ -13,8 +13,6 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
-    localMach1Km: 0,
-    localMach1Mi: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
@@ -26,6 +24,8 @@ export default function App() {
   const [conditions, setConditions] = useState({
     condition: '',
     humidity: 0,
+    localMach1Km: 0,
+    localMach1Mi: 0,
     location:'',
     pressure_in: 0,
     pressure_mb: 0,
@@ -34,54 +34,10 @@ export default function App() {
     zip: ''
   });
 
-  const [modal, setModal] = useState({
+  const [modalState, setModalState] = useState({
     modalDisplay: false,
     modalMessage: '',
   });
-
-
-  const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    // call to weatherapi.com to get local weather conditions
-    // build query string using api key and user input zip code (or city)
-    // if no user location input, alert
-    // if user location input, make the call
-    // conditions state object is a dependency
-
-    e.preventDefault();
-
-    if (conditions.zip === '') {
-      // alert('Please enter a postal code!');
-      setModal({
-        ...modal,
-        modalDisplay: true,
-        modalMessage: 'Please enter a postal code!'
-      });
-      return;
-    }
-
-    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
-
-    conditions.zip && fetch(wxQueryString, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(wx => {
-      setConditions({
-        ...conditions,
-        condition: wx.current.condition.text,
-        humidity: wx.current.humidity,
-        location: wx.location.name,
-        pressure_in: wx.current.pressure_in,
-        pressure_mb: wx.current.pressure_mb,
-        temp_c: wx.current.temp_c,
-        temp_f: wx.current.temp_f,
-      })
-    })
-    .catch(err => console.error(err))
-  }, [conditions, modal]);
 
 
   const handleUnits = (units: string) => {
@@ -139,15 +95,15 @@ export default function App() {
   }
 
   const handleDismiss = () => {
-    setModal({
-      ...modal,
+    setModalState({
+      ...modalState,
       modalDisplay: false,
       modalMessage: ''
     })
   }
 
 
-  const calculate = (e: React.FormEvent<HTMLFormElement>) => {
+  const calculate = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     /*
     1. calculate motor unloaded RPM based on battery voltage and motor rating
     source: https://www.rcdronegood.com/brushless-motor-kv-to-rpm/
@@ -163,25 +119,22 @@ export default function App() {
     // prevent page reload on form submit
     e.preventDefault();
 
-    // validation rules / alerts
+    // validation rules / alert modals
     if (!inputs.propDiaIn || !inputs.propDiaMm) {
-      // alert('Please enter propeller diameter!');
-      setModal({
-        ...modal, modalDisplay: true, modalMessage: 'Please enter propeller diameter!'
+      setModalState({
+        ...modalState, modalDisplay: true, modalMessage: 'Please enter propeller diameter!'
       });
       return;
     }
     else if (!inputs.battV) {
-      // alert('Please enter battery voltage!');
-      setModal({
-        ...modal, modalDisplay: true, modalMessage: 'Please enter battery voltage!'
+      setModalState({
+        ...modalState, modalDisplay: true, modalMessage: 'Please enter battery voltage!'
       });
       return;
     }
     else if (!inputs.motorKv) {
-      // alert('Please enter motor power rating!');
-      setModal({
-        ...modal, modalDisplay: true, modalMessage: 'Please enter motor power rating!'
+      setModalState({
+        ...modalState, modalDisplay: true, modalMessage: 'Please enter motor power rating!'
       });
       return;
     }
@@ -190,40 +143,81 @@ export default function App() {
     const inches: number = inputs.propDiaIn;
     const millimeters: number = inputs.propDiaIn * 25.4;
     const volts: number = inputs.battV;
-    const killavolts: number = inputs.motorKv;
+    const kilovolts: number = inputs.motorKv;
     const inPerMile: number = 63360;
     const mmPerKm: number = 1e6;
     const minPerHour: number = 60;
 
     // initialize variables to calculated prop tip speeds
-    const MPH: number = parseFloat(((inches * Math.PI) * (volts * killavolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
-    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * killavolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
-
-    // calculate temperature at user input altitude OR local temp from API call
-    const localTemp_c: number = (inputs.altitude)
-      ? conditions.temp_c - (inputs.altitude / 500)
-      : conditions.temp_c;
-    // calculate local Mach 1 KPH using metric values
-    const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1e3 * 3600).toFixed(1));
-    // calculate local Mach 1 MPH using KPH -> MPH conversion
-    const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
+    const MPH: number = parseFloat(((inches * Math.PI) * (volts * kilovolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
+    const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * kilovolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
 
     setInputs({ 
       ...inputs,
       valueImperial: MPH,
-      valueMetric: KPH,
-      localMach1Km: localMach1Km,
-      localMach1Mi: localMach1Mi
+      valueMetric: KPH
     });
 
-  }
+  }, [inputs, modalState]);
+
+
+  const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    // call to weatherapi.com to get local weather conditions
+    // build query string using api key and user input zip code (or city)
+
+    e.preventDefault();
+
+    if (conditions.zip === '') {
+      setModalState({
+        ...modalState,
+        modalDisplay: true,
+        modalMessage: 'Please enter a postal code!'
+      });
+      return;
+    }
+
+    const wxQueryString: string = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${conditions.zip}&aqi=no`;
+
+    conditions.zip && fetch(wxQueryString, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(wx => {
+
+      // calculate temperature at user input altitude OR local temp from API call
+      const localTemp_c: number = (inputs.altitude)
+      ? wx.current.temp_c - (inputs.altitude / 500)
+      : wx.current.temp_c;
+      // calculate local Mach 1 KPH using metric values
+      const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1e3 * 3600).toFixed(1));
+      // calculate local Mach 1 MPH using KPH -> MPH conversion
+      const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
+
+      setConditions({
+        ...conditions,
+        condition: wx.current.condition.text,
+        humidity: wx.current.humidity,
+        localMach1Km: localMach1Km,
+        localMach1Mi: localMach1Mi,
+        location: wx.location.name,
+        pressure_in: wx.current.pressure_in,
+        pressure_mb: wx.current.pressure_mb,
+        temp_c: wx.current.temp_c,
+        temp_f: wx.current.temp_f,
+      })
+    })
+    .catch(err => console.error(err))
+  }, [inputs.altitude, conditions, modalState]);
 
 
   return (
     <div className="App">
 
       <header
-        className={`App-header ${modal.modalDisplay
+        className={`App-header ${modalState.modalDisplay
           ? 'modal-blur'
           : 'no-blur'}`}
       >
@@ -231,16 +225,16 @@ export default function App() {
         <p>DRONE TOOLS</p>
       </header>
 
-      {modal.modalDisplay &&
+      {modalState.modalDisplay &&
       <Modal
         dismissModal={handleDismiss}
-        message={modal.modalMessage}
-        blur={modal.modalDisplay}
+        message={modalState.modalMessage}
+        blur={modalState.modalDisplay}
       />}
 
       <DisplayResult
-        mach1Mi={inputs.localMach1Mi}
-        mach1Km={inputs.localMach1Km}
+        mach1Mi={conditions.localMach1Mi}
+        mach1Km={conditions.localMach1Km}
         units={inputs.units}
         valueImperial={inputs.valueImperial}
         valueMetric={inputs.valueMetric}
@@ -251,7 +245,7 @@ export default function App() {
         wxPressureMb={conditions.pressure_mb}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
-        blur={modal.modalDisplay}
+        blur={modalState.modalDisplay}
         />
 
       <InputForm
@@ -262,7 +256,7 @@ export default function App() {
         handleZip={handleZip}
         calculate={calculate}
         getConditions={getConditions}
-        blur={modal.modalDisplay}
+        blur={modalState.modalDisplay}
       />
 
     </div>
