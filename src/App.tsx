@@ -41,19 +41,23 @@ export default function App() {
 
 
   const handleUnits = (units: string) => {
+
     // update Prop Dia value in form input field when units change
     const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
-    if (propDiameter) {
+
+    if (propDiameter && (inputs.propDiaIn || inputs.propDiaMm)) {
       propDiameter.valueAsNumber = (units === 'imperial')
       ? inputs.propDiaIn
       : inputs.propDiaMm;
-      // update units in state
-      setInputs({
-        ...inputs,
-        units: units
-      });
     }
+
+    // update units in state
+    setInputs({
+      ...inputs,
+      units: units
+    });
   }
+
 
   const handlePropDia = (propDiameter: number) => {
     // if MPH is selected, propDiaIn is user input value and propDiaMm is calculated
@@ -77,6 +81,7 @@ export default function App() {
     });
   }
 
+
   // handles all numeric inputs to the 'state' object
   const handleNumericInput = (e: React.BaseSyntheticEvent) => {
     const property: string = e.target.className;
@@ -87,12 +92,14 @@ export default function App() {
     });
   }
 
+
   const handleZip = (zipCode: string) => {
     setConditions({
       ...conditions,
       zip: zipCode
     });
   }
+
 
   const handleDismiss = () => {
     setModalState({
