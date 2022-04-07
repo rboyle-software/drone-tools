@@ -187,13 +187,11 @@ export default function App() {
     .then(res => res.json())
     .then(wx => {
 
-      // calculate temperature at user input altitude OR local temp from API call
-      const localTemp_c: number = (inputs.altitude)
-      ? wx.current.temp_c - (inputs.altitude / 500)
-      : wx.current.temp_c;
+      // calculate temperature at user input altitude
+      const localTemp_c: number = wx.current.temp_c - (inputs.altitude / 500);
       // calculate local Mach 1 KPH using metric values
       const localMach1Km: number = parseFloat(((331.3 + (0.6 * localTemp_c)) / 1e3 * 3600).toFixed(1));
-      // calculate local Mach 1 MPH using KPH -> MPH conversion
+      // calculate local Mach 1 KPH -> MPH conversion
       const localMach1Mi: number = parseFloat((localMach1Km * 0.621371).toFixed(1));
 
       setConditions({
