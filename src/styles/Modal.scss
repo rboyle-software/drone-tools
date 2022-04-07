@@ -1,6 +1,6 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
-$main-magenta: rgb(201, 83, 160);
+$main-magenta: rgb(195, 65, 150);
 
 .modal {
   position: fixed;
@@ -8,13 +8,13 @@ $main-magenta: rgb(201, 83, 160);
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: $main-blue;
+  background-color: $main-gray;
+  padding: 25px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  padding: 25px;
-  font-family: B612, sans-serif;
-  color: $main-blue;
-  background-color: $main-gray;
+  font-family: 'B612', sans-serif;
   border: solid 2px $main-magenta;
   border-radius: 10px;
   filter: drop-shadow(0px 0px 15px rgb(0, 0, 0));
