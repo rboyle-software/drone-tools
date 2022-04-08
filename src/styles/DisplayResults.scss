@@ -11,7 +11,7 @@ $main-magenta: rgb(195, 65, 150);
 }
 
 .weather, .local-mach-1 {
-  height: 1em;
+  min-height: 1em;
 }
 
 .weather > p, .local-mach-1 > p {
