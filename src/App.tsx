@@ -183,8 +183,8 @@ export default function App() {
       return;
     }
 
-    // Netlify Function 'fetch-weather' to mask API key
-    const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // lambda function 'fetch-weather' to mask API key
+    const wxQueryString: string = `https://dronetools.netlify.app/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
@@ -194,7 +194,6 @@ export default function App() {
     })
     .then(res => res.json())
     .then(wx => {
-      console.log('WX', wx);
       // calculate temperature at user input altitude
       const localTemp_c: number = wx.current.temp_c - (inputs.altitude / 500);
       // calculate local Mach 1 KPH using metric values
