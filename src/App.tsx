@@ -185,6 +185,7 @@ export default function App() {
 
     // lambda function 'fetch-weather' to mask API key
     const wxQueryString: string = `https://dronetools.netlify.app/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
