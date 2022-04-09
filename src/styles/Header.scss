@@ -1,0 +1,43 @@
+$main-gray: rgb(26, 28, 34);
+$main-blue: rgb(97, 219, 250);
+$main-magenta: rgb(194, 63, 150);
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 4s linear;
+  }
+
+}
+
+@media screen and (max-width: 540px) {
+  .App-logo {
+    height: 20vmin;
+  }
+
+  .App-header > a {
+    font-size: 1.15em;
+  }
+
+}
+
+header > a {
+  text-decoration: none;
+  
+  & p {
+    font-size: 1.5em;
+    font-family: 'Exo', sans-serif;
+    color: $main-blue;
+    filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(0px 0px 4px rgb(40, 160, 195));
+  }
+
+}

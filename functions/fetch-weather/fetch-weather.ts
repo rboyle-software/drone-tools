@@ -5,9 +5,7 @@ import fetch from 'node-fetch';
 export const handler: Handler = async (event, context) => {
 
   const zipcode = event.queryStringParameters?.zip;
-
   const requestUrl = `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_KEY}&q=${zipcode}&aqi=no`;
-
 
   try {
     const response = await fetch(requestUrl);

@@ -3,7 +3,6 @@ import '../styles/Modal.scss'
 
 export default function Modal(props: any) {
 
-
   return (
     <div className='overlay'>
       <div
