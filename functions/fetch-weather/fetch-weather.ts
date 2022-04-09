@@ -17,7 +17,7 @@ export const handler: Handler = async (event, context) => {
       body: JSON.stringify(data)
     }
   }
-  catch (err) {
+  catch (err: any) {
     return {
       statusCode: err.statusCode || 500,
       body: JSON.stringify({
