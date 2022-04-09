@@ -1,4 +1,7 @@
-# DRONE TOOLS
+<p align="center">
+  <a href="https://dronetools.dev/"><img src="https://github.com/rboyle-software/drone-tools/blob/b00204324b32c9162394adac3adfb4e8dee72eac/public/dt-logo.png" width="500px"></a>
+</p>
+<br><br><hr>
 
 - Estimate propeller tip speed!
 - Optimize settings to achieve maximum performance!
@@ -6,14 +9,17 @@
 - Compare to Local Mach 1 and adjust accordingly!
 <br><br>
 
-<hr>
 
 Drone Tools is a simple toolbox for pilots of high-power, high-speed multirotor aircraft. At max throttle and high airspeeds these amazing machines are at risk of breaking the sound barrier! That sounds super cool but may result in lost efficiency or undesirable flight characteristics.
 <br><br>
 The propeller tip speed calculator enables pilots to estimate the max potential tip speed based on propeller, battery, and motor specs (calculations are based on an unloaded brushless motor).
 <br><br>
 
-<hr>
+
+<p align="center">
+  <img src="https://github.com/rboyle-software/drone-tools/blob/b00204324b32c9162394adac3adfb4e8dee72eac/public/r-weather.png" width="300px">
+</p>
+<br><br>
 
 ## Contribute to this project!
 
