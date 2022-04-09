@@ -24,6 +24,6 @@
     "src",
     "temp/the-math.js",
     "__test__/setupTests.ts",
-    ".netlify/functions"
+    "functions"
   ]
 }
