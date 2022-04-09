@@ -75,7 +75,7 @@ export default function InputForm(props: any) {
             >
           </input>
 
-          <button type="submit" className='submit'>CALCULATE</button>
+          <button type="submit" className='submit'>PROP TIP SPEED</button>
         </div>
 
         <div className='options'>
