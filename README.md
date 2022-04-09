@@ -9,10 +9,12 @@
 - Compare to Local Mach 1 and adjust accordingly!
 <br><br>
 
+
 Drone Tools is a simple toolbox for pilots of high-power, high-speed multirotor aircraft. At max throttle and high airspeeds these amazing machines are at risk of breaking the sound barrier! That sounds super cool but may result in lost efficiency or undesirable flight characteristics.
 <br><br>
 The propeller tip speed calculator enables pilots to estimate the max potential tip speed based on propeller, battery, and motor specs (calculations are based on an unloaded brushless motor).
 <br><br>
+
 
 <p align="center">
   <img src="https://github.com/rboyle-software/drone-tools/blob/b00204324b32c9162394adac3adfb4e8dee72eac/public/r-weather.png" width="300px">
