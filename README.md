@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# DRONE TOOLS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Estimate propeller tip speed!
+- Optimize settings to achieve maximum performance!
+- Factor in current air temperature at target altitude!
+- Compare to Local Mach 1 and adjust accordingly!
+<br><br>
 
-## Available Scripts
+<hr>
 
-In the project directory, you can run:
+Drone Tools is a simple toolbox for pilots of high-power, high-speed multirotor aircraft. At max throttle and high airspeeds these amazing machines are at risk of breaking the sound barrier! That sounds super cool but may result in lost efficiency or undesirable flight characteristics.
+<br><br>
+The propeller tip speed calculator enables pilots to estimate the max potential tip speed based on propeller, battery, and motor specs (calculations are based on an unloaded brushless motor).
+<br><br>
 
-### `npm start`
+<hr>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Contribute to this project!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Please comment or send a message to correct our math or propose additional features.
+<br><br>
 
-### `npm test`
+## To Do:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [x] RPM * Prop Max Circumference over Distance / Time = Prop Tip Speed
+- [x] Prop Tip Speed + Airspeed = Max Tip Speed?
+- [x] Motor kV rating * battery V rating = unloaded RPM estimate
+- [ ] Account for airframe pitch, horizontal velocity
+- [x] add input field for anticipated airspeed (convert knots to MPH?)
+- [x] API call for temp, pressure, humidity / display local Mach 1
+- [x] make it mobile browser-friendly
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br><br>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bba96309-cd3a-494c-90f9-cde59c2896a0/deploy-status)](https://app.netlify.com/sites/dronetools/deploys)
