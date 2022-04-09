@@ -26,5 +26,6 @@ yarn-error.log*
 
 /src/references
 /temp
+
 # Local Netlify folder
 .netlify

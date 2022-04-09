@@ -21,6 +21,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "temp/the-math.js", "__test__/setupTests.ts"  ]
+    "src",
+    "temp/the-math.js",
+    "__test__/setupTests.ts",
+    ".netlify/functions"
+  ]
 }
