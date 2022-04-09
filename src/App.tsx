@@ -1,13 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
+import Header from './components/Header';
 import Modal from './components/Modal';
 import InputForm from './InputForm';
-import logo from './logo.png';
 import './styles/App.scss';
 
 
 export default function App() {
-
 
   const [inputs, setInputs] = useState({
     airspeed: 0,
@@ -222,21 +221,16 @@ export default function App() {
   return (
     <div className="App">
 
-      <header
-        className={`App-header ${modalState.modalDisplay
-          ? 'modal-blur'
-          : 'no-blur'}`}
-      >
-        <img src={logo} className="App-logo" alt="spinning-logo" />
-        <p>DRONE TOOLS</p>
-      </header>
-
       {modalState.modalDisplay &&
       <Modal
-        dismissModal={handleDismiss}
-        message={modalState.modalMessage}
-        blur={modalState.modalDisplay}
+      dismissModal={handleDismiss}
+      message={modalState.modalMessage}
+      blur={modalState.modalDisplay}
       />}
+
+      <Header
+        modalDisplay={modalState.modalDisplay}
+      />
 
       <DisplayResult
         mach1Mi={conditions.localMach1Mi}
