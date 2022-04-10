@@ -2,11 +2,6 @@ $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 218, 251);
 $main-magenta: rgb(194, 63, 150);
 
-* {
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
 
 @media screen and (max-width: 540px) {
 
@@ -58,6 +53,7 @@ $main-magenta: rgb(194, 63, 150);
   margin-top: 40px;
   height: 10vmin;
   pointer-events: none;
+  
 }
 
 .modal-blur {
