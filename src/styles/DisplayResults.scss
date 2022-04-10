@@ -8,6 +8,9 @@ $main-magenta: rgb(194, 63, 150);
   justify-items: flex-start;
   width: 90%;
   margin-bottom: 25px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 .weather, .local-mach-1 {

@@ -1,5 +1,5 @@
 $main-gray: rgb(26, 28, 34);
-$main-blue: #61dbfa;
+$main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
 
 @keyframes App-logo-spin {
@@ -32,6 +32,9 @@ $main-magenta: rgb(194, 63, 150);
 
 header > a {
   text-decoration: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
   
   & p {
     font-size: 1.5em;
