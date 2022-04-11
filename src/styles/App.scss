@@ -3,40 +3,6 @@ $main-blue: rgb(97, 218, 251);
 $main-magenta: rgb(194, 63, 150);
 
 
-@media screen and (max-width: 540px) {
-
-  .submit {
-    height: 80px;
-    font-size: 1em;
-  }
-
-  .weather, .local-mach-1 {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  .diameter-units {
-    font-size: 1em;
-    
-  }
-
-  .form, .units {
-    font-size: 1em !important;
-  }
-
-  [type=radio] {
-    vertical-align: text-top;
-    height: 30px !important;
-    width: 30px !important;
-  }
-
-  [type=number], [type=text] {
-    height: 40px !important;
-    font-size: 1em !important;
-  }
-
-}
-
 .App {
   min-height: 100vh;
   min-width: 340px;
@@ -47,13 +13,6 @@ $main-magenta: rgb(194, 63, 150);
   text-align: center;
   color: $main-blue;
   background-color: $main-gray;
-}
-
-.App-logo {
-  margin-top: 40px;
-  height: 10vmin;
-  pointer-events: none;
-  
 }
 
 .modal-blur {

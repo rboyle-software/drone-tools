@@ -2,6 +2,12 @@ $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
 
+.App-logo {
+  margin-top: 40px;
+  height: 10vmin;
+  pointer-events: none;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -28,19 +34,22 @@ $main-magenta: rgb(194, 63, 150);
     font-size: 1.15em;
   }
 
+  .weather, .local-mach-1 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 }
 
-header > a {
+.App-header > a {
   text-decoration: none;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-  
+
   & p {
     font-size: 1.5em;
     font-family: 'Exo', sans-serif;
     color: $main-blue;
-    filter: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(0px 0px 4px rgb(40, 160, 195));
+    filter: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(0px 0px 5px rgb(40, 160, 195));
   }
-
 }
