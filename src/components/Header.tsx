@@ -1,5 +1,5 @@
 import '../styles/Header.scss';
-import logo from '../logo.png';
+import logo from '../assets/logo.png';
 
 
 export default function Header(props: any) {

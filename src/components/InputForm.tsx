@@ -1,8 +1,7 @@
-import './styles/InputForm.scss'
+import '../styles/InputForm.scss'
 
 
 export default function InputForm(props: any) {
-
 
   return (
     <div
@@ -117,4 +116,5 @@ export default function InputForm(props: any) {
       </form>
     </div>
   )
+
 }
