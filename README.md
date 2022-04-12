@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://dronetools.dev/"><img src="https://github.com/rboyle-software/drone-tools/blob/b44be4e6820016b8093c3a7fcb84b7b48f3b856d/public/dt-logo-transparent.png" width="500px"></a>
+  <a href="https://dronetools.dev/"><img src="https://github.com/rboyle-software/drone-tools/blob/a1cb94f51c795f3afe8f2c3e01e31c3a80b9725c/public/dt-logo-transparent1.png" width="500px"></a>
 </p>
 <br><br><hr>
 
