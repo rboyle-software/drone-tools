@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
-import Header from './components/Header';
-import Modal from './components/Modal';
+import Header from './Header';
+import Modal from './Modal';
 import InputForm from './InputForm';
-import './styles/App.scss';
+import '../styles/App.scss';
 
 
 export default function App() {
@@ -169,7 +169,7 @@ export default function App() {
 
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     // call to weatherapi.com to get local weather conditions
-    // build query string using api key and user input zip code (or city)
+    // build query string using api key and user input zip code
 
     e.preventDefault();
 
@@ -182,9 +182,8 @@ export default function App() {
       return;
     }
 
-    // lambda function 'fetch-weather' to mask API key
+    // 'fetch-weather' serverless function to mask API key
     const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
-    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
@@ -260,7 +259,6 @@ export default function App() {
       />
 
     </div>
-
   );
 
 }
