@@ -12,6 +12,7 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
+    machNumber: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
@@ -157,14 +158,16 @@ export default function App() {
     // initialize variables to calculated prop tip speeds
     const MPH: number = parseFloat(((inches * Math.PI) * (volts * kilovolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
     const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * kilovolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
+    const machNumber: number = (conditions.localMach1Km) ? parseFloat((KPH / conditions.localMach1Km).toFixed(2)) : 0;
 
     setInputs({ 
       ...inputs,
+      machNumber: machNumber,
       valueImperial: MPH,
       valueMetric: KPH
     });
 
-  }, [inputs, modalState]);
+  }, [inputs, modalState, conditions.localMach1Km]);
 
 
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -183,7 +186,8 @@ export default function App() {
     }
 
     // 'fetch-weather' serverless function to mask API key
-    const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
@@ -237,6 +241,7 @@ export default function App() {
         units={inputs.units}
         valueImperial={inputs.valueImperial}
         valueMetric={inputs.valueMetric}
+        machNumber={inputs.machNumber}
         wxConditions={conditions.condition}
         wxHumidity={conditions.humidity}
         location={conditions.location}

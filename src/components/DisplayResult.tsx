@@ -18,8 +18,7 @@ export default function DisplayResult(props: any) {
       { /* display current local weather info if data has been fetched from the weather API */ }
       <div className='weather'>
         {(props.location) &&
-          <p>City: {props.location} | Current: {props.wxConditions} | Temp: {temperature} | Humidity: {props.wxHumidity}% | Pressure: {pressure}</p>
-        }
+          <p>City: {props.location} | Current: {props.wxConditions} | Temp: {temperature} | Humidity: {props.wxHumidity}% | Pressure: {pressure}</p>}
       </div>
 
       { /* display imperial or metric calculated value based on current state of 'units' */ }
@@ -27,16 +26,17 @@ export default function DisplayResult(props: any) {
         {props.units === 'imperial'
           ? <p>{props.valueImperial} MPH</p>
           : <p>{props.valueMetric} KPH</p>}
+          {/* <p>Mach {props.machNumber}</p> */}
       </div>
 
       { /* if local mach 1 has been calculated and weather info has been fetched, display local mach 1 */ }
       <div className='local-mach-1'>
+        <p>Mach: {props.machNumber}</p>
         {(props.mach1Km !== 0 && props.location) &&
           <p>{props.units === 'imperial'
             ? `Local Mach 1: ${props.mach1Mi}MPH`
             : `Local Mach 1: ${props.mach1Km}KPH`}
-          </p>
-        }
+          </p>}
       </div>
 
     </div>
