@@ -12,9 +12,9 @@ export default function InputForm(props: any) {
 
       <form className='form' onSubmit={(e) => props.calculate(e)}>
 
-        <div className='units'>Units:
-          <label>
+        <div className='units'>
             <input
+              id="imperial"
               type='radio'
               name='units'
               value='imperial'
@@ -22,11 +22,12 @@ export default function InputForm(props: any) {
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
-            MPH
+          <label className='unitsLabel' htmlFor='imperial'>
+            Imperial
           </label>
 
-          <label>
             <input
+              id="metric"
               type='radio'
               name='units'
               value='metric'
@@ -34,7 +35,8 @@ export default function InputForm(props: any) {
               onChange={(e) => props.handleUnits(e.target.value)}
               >
             </input>
-            KPH
+          <label className='unitsLabel' htmlFor='metric'>
+            Metric
           </label>
         </div>
 
@@ -78,7 +80,7 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='options'>
-          <label>Airspeed</label>
+          <label>Airspeed{props.units === 'imperial' ? ' (MPH)' : ' (KPH)'}</label>
           <input
             className='airspeed'
             type='number'
@@ -89,7 +91,7 @@ export default function InputForm(props: any) {
             >
           </input>
 
-          <label>Altitude</label>
+          <label>Altitude (ft)</label>
           <input
             className='altitude'
             type='number'
@@ -100,7 +102,7 @@ export default function InputForm(props: any) {
             >
           </input>
 
-          <label>Zip Code</label>
+          <label>City / Zip</label>
           <input
             type='text'
             placeholder='0'

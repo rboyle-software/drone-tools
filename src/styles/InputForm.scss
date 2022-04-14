@@ -1,6 +1,7 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
+$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(0px 0px 8px rgb(163, 49, 125));
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -16,11 +17,10 @@ input[type=number] {
 
 input:focus {
   outline-style: none;
-  filter: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(0px 0px 8px rgb(139, 33, 104));
+  filter: $magenta-shadow;
 }
 
 button {
-  display: block;
   height: 50px;
   width: 80%;
   font-weight: bold;
@@ -35,11 +35,28 @@ button {
   -webkit-user-select: none;
 }
 
-::placeholder {
-  color: #61dafb80;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
+.form {
+  font-family: 'B612', sans-serif;
+  font-size: 0.9em;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: 
+    'units1 units2'
+    'inputs options'
+  }
+  
+  ::placeholder {
+    color: #61dafb80;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
+
+.inputs, .options {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
 .inputs > label, .options > label {
@@ -66,49 +83,57 @@ button {
   padding-right: 30px;
 }
 
-[type=radio] {
-  margin: 0px 5px 0px 20px;
-  height: 15px;
-  width: 15px;
-  accent-color: $main-magenta;
-}
-
-
-@media screen and (min-width: 540px) {
-  button:hover {
-    color: $main-gray;
-    background-color: $main-magenta;
-    filter: drop-shadow(0px 0px 4px rgb(0, 0, 0)) drop-shadow(0px 0px 8px #8b2168);
-  }
-}
-
-.form {
-  font-family: 'B612', sans-serif;
-  font-size: 0.9em;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    'units units'
-    'inputs options'
-}
-
 .units {
-  font-size: 1.1em;
   display: flex;
-  justify-content: center;
+  font-family: Arial;
+  font-size: 0.7em;
+  font-weight: bold;
+  justify-content: space-around;
   grid-column: 1 / 3;
   margin-bottom: 15px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+
+  & .unitsLabel {
+    color: $main-blue;
+    border: solid 2px $main-magenta;
+    padding: 10px 10px;
+    margin: 10px 0px;
+    background-color: $main-gray;
+    transition: 300ms background-color ease-in-out, filter 300ms ease-in-out;
+    cursor: pointer;
+  }
+
+  & [type=radio] {
+    appearance: none;
+    position: absolute;
+  }
+
+  & #imperial:checked + label {
+    color: $main-gray;
+    background-color: $main-magenta;
+    filter: $magenta-shadow;
+  }
+
+  & #metric:checked + label {
+    color: $main-gray;
+    background-color: $main-magenta;
+    filter: $magenta-shadow;
+  }
+
+  & label {
+    width: 35.2%;
+    border-radius: 5px;
+  }
 }
 
-.inputs, .options {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
+@media screen and (min-width: 540px) {
+  button:hover {
+    color: $main-gray;
+    background-color: $main-magenta;
+    filter: $magenta-shadow;
+  }
 }
 
 @media screen and (max-width: 540px) {
