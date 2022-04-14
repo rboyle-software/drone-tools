@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import DisplayResult from './DisplayResult';
+import InputForm from './InputForm';
 import Header from './Header';
 import Modal from './Modal';
-import InputForm from './InputForm';
 import '../styles/App.scss';
 
 
