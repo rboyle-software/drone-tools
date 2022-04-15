@@ -186,8 +186,8 @@ export default function App() {
     }
 
     // 'fetch-weather' serverless function to mask API key
-    // const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
-    const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
