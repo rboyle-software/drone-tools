@@ -80,7 +80,7 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='options'>
-          <label>Airspeed{props.units === 'imperial' ? ' (MPH)' : ' (KPH)'}</label>
+          <label>Airspeed{props.units === 'imperial' ? ' (knots)' : ' (KPH)'}</label>
           <input
             className='airspeed'
             type='number'

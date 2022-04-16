@@ -23,19 +23,15 @@ export default function DisplayResult(props: any) {
 
       { /* display imperial or metric calculated value based on current state of 'units' */ }
       <div className='output-value'>
-        {props.units === 'imperial'
-          ? <p>{props.valueImperial} MPH</p>
-          : <p>{props.valueMetric} KPH</p>}
-          {/* <p>Mach {props.machNumber}</p> */}
+          <p>Mach {props.machNumber}</p>
       </div>
 
       { /* if local mach 1 has been calculated and weather info has been fetched, display local mach 1 */ }
       <div className='local-mach-1'>
-        <p>Mach: {props.machNumber}</p>
         {(props.mach1Km !== 0 && props.location) &&
           <p>{props.units === 'imperial'
-            ? `Local Mach 1: ${props.mach1Mi}MPH`
-            : `Local Mach 1: ${props.mach1Km}KPH`}
+            ? `Tip Speed: ${props.feetPerSecond}FPS | Local Mach 1: ${props.mach1Mi}MPH`
+            : `Tip Speed: ${props.metersPerSecond}MPS | Local Mach 1: ${props.mach1Km}KPH`}
           </p>}
       </div>
 

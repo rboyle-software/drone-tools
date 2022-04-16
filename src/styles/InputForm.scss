@@ -1,7 +1,7 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
-$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(0px 0px 8px rgb(163, 49, 125));
+$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -96,12 +96,13 @@ button {
   -webkit-user-select: none;
 
   & .unitsLabel {
-    color: $main-blue;
+    // color: $main-blue;
+    color: #61dafb80;
     border: solid 2px $main-magenta;
     padding: 10px 10px;
     margin: 10px 0px;
     background-color: $main-gray;
-    transition: 300ms background-color ease-in-out, filter 300ms ease-in-out;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out;
     cursor: pointer;
   }
 
@@ -138,7 +139,7 @@ button {
 
 @media screen and (max-width: 540px) {
   .submit {
-    height: 80px;
+    height: 60px;
     font-size: 1em;
   }
 
@@ -153,7 +154,7 @@ button {
   }
 
   [type=number], [type=text] {
-    height: 40px;
+    // height: 40px;
     font-size: 1em;
   }
 }

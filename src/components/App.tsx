@@ -12,7 +12,9 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
+    feetPerSecond: 0,
     machNumber: 0,
+    metersPerSecond: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
@@ -148,7 +150,7 @@ export default function App() {
 
     // initialize values for calculations
     const inches: number = inputs.propDiaIn;
-    const millimeters: number = inputs.propDiaIn * 25.4;
+    const millimeters: number = inputs.propDiaMm;
     const volts: number = inputs.battV;
     const kilovolts: number = inputs.motorKv;
     const inPerMile: number = 63360;
@@ -159,10 +161,19 @@ export default function App() {
     const MPH: number = parseFloat(((inches * Math.PI) * (volts * kilovolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
     const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * kilovolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
     const machNumber: number = (conditions.localMach1Km) ? parseFloat((KPH / conditions.localMach1Km).toFixed(2)) : 0;
+    const feetPerSecond: number = parseFloat(((((inches * Math.PI) * (volts * kilovolts)) / 12) / 60).toFixed(2));
+    const metersPerSecond: number = parseFloat(((((millimeters * Math.PI) * volts * kilovolts) / 1000) / 60).toFixed(2));
 
-    setInputs({ 
+    /*
+      TODO: airspeed in knots or kph / tip speed in fps or mps
+      state variables: knots, fps, mps
+    */
+
+    setInputs({
       ...inputs,
+      feetPerSecond: feetPerSecond,
       machNumber: machNumber,
+      metersPerSecond: metersPerSecond,
       valueImperial: MPH,
       valueMetric: KPH
     });
@@ -186,8 +197,8 @@ export default function App() {
     }
 
     // 'fetch-weather' serverless function to mask API key
-    const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
-    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
 
     conditions.zip && fetch(wxQueryString, {
       method: 'GET',
@@ -236,9 +247,11 @@ export default function App() {
       />
 
       <DisplayResult
+        units={inputs.units}
+        feetPerSecond={inputs.feetPerSecond}
+        metersPerSecond={inputs.metersPerSecond}
         mach1Mi={conditions.localMach1Mi}
         mach1Km={conditions.localMach1Km}
-        units={inputs.units}
         valueImperial={inputs.valueImperial}
         valueMetric={inputs.valueMetric}
         machNumber={inputs.machNumber}
