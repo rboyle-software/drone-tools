@@ -1,7 +1,10 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
-$faded-blue: rgba(97, 218, 251, 0.5);
+$faded-blue: rgb(35, 88, 102);
+$deep-blue: rgb(54, 54, 54);
 $main-magenta: rgb(194, 63, 150);
+$faded-magenta: rgb(126, 31, 94);
+$deep-magenta: rgb(36, 36, 36);
 $magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
 
 /* Chrome, Safari, Edge, Opera */
@@ -23,13 +26,13 @@ input:focus {
 
 button {
   height: 50px;
-  width: 45%;
+  width: 60%;
   font-weight: bold;
   color: $main-magenta;
   background-color: $main-gray;
   border: solid 2px $main-magenta;
   border-radius: 5px;
-  margin: 30px 0px 15px;
+  margin: 15px 0px 15px;
   transition: ease-in-out 300ms;
   user-select: none;
   -moz-user-select: none;
@@ -37,6 +40,7 @@ button {
 }
 
 label {
+  margin: 5px 0px 5px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -45,75 +49,41 @@ label {
 .input-form {
   font-family: 'B612', sans-serif;
   font-size: 0.75em;
-  width: 50%;
+  width: 400px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 19rem;
-  align-items: center;
-
-  & > input {
-    width: 30%;
-  }
-}
-
-::placeholder {
-  color: $faded-blue;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
-
-// .inputs, .options {
-//   display: flex;
-//   flex-direction: column;
-//   justify-items: center;
-//   align-items: center;
-// }
-
-
-// .inputs > label, .options > label {
-//   font-size: 0.9em;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   margin-top: 10px;
-//   margin-bottom: 5px;
-
-// }
-
-[type=number], [type=text] {
-  border: solid 2px $main-magenta;
-  border-radius: 5px;
-  height: 1.5em;
-  width: 50%;
-  background-color: $main-gray;
-  color: $main-magenta;
-  font-size: 0.7em;
-  text-align: end;
-  padding-right: 30px;
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: solid 2px $faded-blue;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: $deep-magenta;
 }
 
 .units {
   display: flex;
+  grid-column: 1 / 3;
   font-family: Arial;
   font-size: 0.9em;
   font-weight: bold;
   justify-content: space-around;
+  background-color: $deep-blue;
+  border-bottom: solid 2px $faded-blue;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
 
   & .unitsLabel {
+    width: 39%;
+    background-color: $main-gray;
     color: $faded-blue;
     border: solid 2px $main-magenta;
+    border-radius: 10px;
     padding: 10px 10px;
     margin: 10px 0px;
-    background-color: $main-gray;
     transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out;
     cursor: pointer;
   }
@@ -134,11 +104,52 @@ label {
     background-color: $main-magenta;
     filter: $magenta-shadow;
   }
+}
 
-  & label {
-    width: 40%;
-    border-radius: 5px;
-  }
+.inputs {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 2;
+  align-items: center;
+}
+
+.options {
+  background-color: $deep-blue;
+  border-top: solid 2px $faded-blue;
+  border-left: solid 2px $faded-blue;
+  border-top-left-radius: 15px;
+}
+
+.inputs-right, .options {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2 / 3;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs, .inputs-right, .options {
+  font-size: 0.8em;
+}
+
+::placeholder {
+  color: $faded-blue;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+[type=number], [type=text] {
+  border: solid 2px $main-magenta;
+  border-radius: 5px;
+  height: 1.5em;
+  width: 50%;
+  background-color: $main-gray;
+  color: $main-magenta;
+  font-size: 0.7em;
+  text-align: end;
+  padding-right: 30px;
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 540px) {
