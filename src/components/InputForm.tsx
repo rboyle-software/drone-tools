@@ -10,38 +10,37 @@ export default function InputForm(props: any) {
         : 'no-blur'}`}
     >
 
+      <div className='units'>
+          <input
+            id="imperial"
+            type='radio'
+            name='units'
+            value='imperial'
+            checked={props.units === 'imperial'}
+            onChange={(e) => props.handleUnits(e.target.value)}
+            >
+          </input>
+        <label className='unitsLabel' htmlFor='imperial'>
+          Imperial
+        </label>
+
+          <input
+            id="metric"
+            type='radio'
+            name='units'
+            value='metric'
+            checked={props.units === 'metric'}
+            onChange={(e) => props.handleUnits(e.target.value)}
+            >
+          </input>
+        <label className='unitsLabel' htmlFor='metric'>
+          Metric
+        </label>
+      </div>
+
       <form className='form' onSubmit={(e) => props.calculate(e)}>
 
-        <div className='units'>
-            <input
-              id="imperial"
-              type='radio'
-              name='units'
-              value='imperial'
-              checked={props.units === 'imperial'}
-              onChange={(e) => props.handleUnits(e.target.value)}
-              >
-            </input>
-          <label className='unitsLabel' htmlFor='imperial'>
-            Imperial
-          </label>
-
-            <input
-              id="metric"
-              type='radio'
-              name='units'
-              value='metric'
-              checked={props.units === 'metric'}
-              onChange={(e) => props.handleUnits(e.target.value)}
-              >
-            </input>
-          <label className='unitsLabel' htmlFor='metric'>
-            Metric
-          </label>
-        </div>
-
-        <div className='inputs'>
-
+        {/* <div className='inputs'> */}
           <label>Prop Dia.{props.units === 'imperial' ? ' (in)' : ' (mm)'}</label>
 
           <input
@@ -77,12 +76,12 @@ export default function InputForm(props: any) {
           </input>
 
           <button type="submit" className='submit'>PROP TIP SPEED</button>
-        </div>
+        {/* </div> */}
 
-        <div className='options'>
+        {/* <div className='inputs airspeed'> */}
           <label>Airspeed{props.units === 'imperial' ? ' (knots)' : ' (KPH)'}</label>
           <input
-            className='airspeed'
+            // className='airspeed'
             type='number'
             inputMode='decimal'
             step='any'
@@ -90,7 +89,9 @@ export default function InputForm(props: any) {
             onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
+        {/* </div> */}
 
+        {/* <div className='options'> */}
           <label>Altitude (ft)</label>
           <input
             className='altitude'
@@ -113,7 +114,7 @@ export default function InputForm(props: any) {
           <button className='submit' onClick={(e) => props.getConditions(e)}>
           WEATHER
           </button>
-        </div>
+        {/* </div> */}
 
       </form>
     </div>
