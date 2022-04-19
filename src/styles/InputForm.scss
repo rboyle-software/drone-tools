@@ -1,11 +1,11 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $faded-blue: rgb(35, 88, 102);
-$deep-blue: rgb(54, 54, 54);
+$deep-blue: rgb(14, 39, 44);
 $main-magenta: rgb(194, 63, 150);
 $faded-magenta: rgb(126, 31, 94);
-$deep-magenta: rgb(36, 36, 36);
-$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
+$deep-magenta: rgb(31, 18, 26);
+$magenta-shadow: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -21,16 +21,17 @@ input[type=number] {
 
 input:focus {
   outline-style: none;
+  border-color: $main-magenta;
   filter: $magenta-shadow;
 }
 
 button {
   height: 50px;
-  width: 60%;
+  width: 70%;
   font-weight: bold;
   color: $main-magenta;
   background-color: $main-gray;
-  border: solid 2px $main-magenta;
+  border: solid 2px $faded-magenta;
   border-radius: 5px;
   margin: 15px 0px 15px;
   transition: ease-in-out 300ms;
@@ -55,37 +56,46 @@ label {
 .form {
   display: grid;
   grid-template-columns: 50% 50%;
-  border: solid 2px $faded-blue;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  // background-image: linear-gradient(140deg, $deep-magenta, rgba(46, 20, 37, 0));
   background-color: $deep-magenta;
+  border: solid 2px $faded-blue;
+  border-radius: 15px;
 }
 
 .units {
   display: flex;
   grid-column: 1 / 3;
+  background-color: $main-gray;
   font-family: Arial;
   font-size: 0.9em;
   font-weight: bold;
   justify-content: space-around;
-  background-color: $deep-blue;
   border-bottom: solid 2px $faded-blue;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  transition: ease-in-out 300ms;
+
+  &:hover {
+    background-color: $deep-blue;
+  }
 
   & .unitsLabel {
     width: 39%;
     background-color: $main-gray;
     color: $faded-blue;
-    border: solid 2px $main-magenta;
+    border: solid 2px $faded-magenta;
     border-radius: 10px;
     padding: 10px 10px;
     margin: 10px 0px;
-    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out, border-color 200ms ease-in-out;
     cursor: pointer;
+
+    &:hover {
+      border-color: $main-magenta;
+    }
   }
 
   & [type=radio] {
@@ -96,12 +106,14 @@ label {
   & #imperial:checked + label {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
   }
 
   & #metric:checked + label {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
   }
 }
@@ -114,10 +126,16 @@ label {
 }
 
 .options {
-  background-color: $deep-blue;
+  background-color: $main-gray;
   border-top: solid 2px $faded-blue;
   border-left: solid 2px $faded-blue;
   border-top-left-radius: 15px;
+  border-bottom-right-radius: 14px;
+  transition: ease-in-out 300ms;
+
+  &:hover {
+    background-color: $deep-blue;
+  }
 }
 
 .inputs-right, .options {
@@ -134,28 +152,35 @@ label {
 
 ::placeholder {
   color: $faded-blue;
+  font-size: 1em;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
 }
 
 [type=number], [type=text] {
-  border: solid 2px $main-magenta;
+  border: solid 2px $faded-magenta;
   border-radius: 5px;
-  height: 1.5em;
+  height: 2em;
   width: 50%;
   background-color: $main-gray;
   color: $main-magenta;
-  font-size: 0.7em;
+  font-size: 1rem;
   text-align: end;
   padding-right: 30px;
   margin-bottom: 10px;
+  transition: ease-in-out 300ms;
+
+  &:hover {
+    border-color: $main-magenta;
+  }
 }
 
 @media screen and (min-width: 540px) {
   button:hover {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
   }
 }

@@ -195,7 +195,7 @@ export default function App() {
       setModalState({
         ...modalState,
         modalDisplay: true,
-        modalMessage: 'Please enter a postal code!'
+        modalMessage: 'Please enter a city or postal code!'
       });
       return;
     }
