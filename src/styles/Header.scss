@@ -15,9 +15,11 @@ $blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
   border-bottom-right-radius: 15px;
   box-shadow: 0px 3px 10px black;
   transition: 300ms ease-in-out;
+}
 
-  &:hover {
-    background-color: $deep-blue;
+@media screen and (min-width: 540px) {
+  .header-div:hover {
+      background-color: $deep-blue;
   }
 }
 

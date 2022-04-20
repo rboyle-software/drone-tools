@@ -79,43 +79,44 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='right-side'>
-        <div className='inputs-right'>
-          <label>Airspeed {props.units === 'imperial' ? '(knots)' : '(KPH)'}</label>
-          <input
-            className='airspeed'
-            type='number'
-            inputMode='decimal'
-            step='any'
-            placeholder='0'
-            onChange={(e) => props.handleNumericInput(e)}
-            >
-          </input>
-        </div>
+          <div className='inputs-right'>
+            <label>Airspeed {props.units === 'imperial' ? '(knots)' : '(KPH)'}</label>
+            <input
+              id='airspeed'
+              className='airspeedKnots'
+              type='number'
+              inputMode='decimal'
+              step='any'
+              placeholder='0'
+              onChange={(e) => props.handleAirspeed(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+              >
+            </input>
+          </div>
 
-        <div className='options'>
-          <label>Altitude (ft)</label>
-          <input
-            className='altitude'
-            type='number'
-            inputMode='decimal'
-            step='any'
-            placeholder='0'
-            onChange={(e) => props.handleNumericInput(e)}
-            >
-          </input>
+          <div className='options'>
+            <label>Altitude (ft)</label>
+            <input
+              className='altitude'
+              type='number'
+              inputMode='decimal'
+              step='any'
+              placeholder='0'
+              onChange={(e) => props.handleNumericInput(e)}
+              >
+            </input>
 
-          <label>City / Zip</label>
-          <input
-            type='text'
-            placeholder='0'
-            onChange={(e) => props.handleZip(e.target.value)}
-            >
-          </input>
+            <label>City / Zip</label>
+            <input
+              type='text'
+              placeholder='0'
+              onChange={(e) => props.handleZip(e.target.value)}
+              >
+            </input>
 
-          <button className='submit' onClick={(e) => props.getConditions(e)}>
-          WEATHER
-          </button>
-        </div>
+            <button className='submit' onClick={(e) => props.getConditions(e)}>
+            WEATHER
+            </button>
+          </div>
         </div>
 
       </form>

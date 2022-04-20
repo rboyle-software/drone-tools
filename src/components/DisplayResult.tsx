@@ -6,7 +6,10 @@ export default function DisplayResult(props: any) {
   // store imperial or metric temperature and pressure values based on current state of 'units'
   const temperature: string = (props.units === 'imperial') ? `${props.wxTempF}f` : `${props.wxTempC}c`;
   const pressure: string = (props.units === 'imperial') ? `${props.wxPressureIn}"Hg` : `${props.wxPressureMb}mb`;
-
+  const fpsTipSpeedString: string = (props.feetPerSecond) ? `${props.feetPerSecond} ft/sec` : '(enter specs below)';
+  const mpsTipSpeedString: string = (props.metersPerSecond) ? `${props.metersPerSecond} m/sec` : '(enter specs below)';
+  const fpsLocalMach1String: string = (props.localMach1Fps) ? `${props.localMach1Fps} ft/sec` : '(enter location below)';
+  const mpsLocalMach1String: string = (props.localMach1Mps) ? `${props.localMach1Mps} m/sec` : '(enter location below)';
 
   return (
     <div
@@ -32,13 +35,16 @@ export default function DisplayResult(props: any) {
 
       </div>
 
-      { /* if local mach 1 has been calculated and weather info has been fetched, display local mach 1 */ }
+      { /*
+        if local mach 1 has been calculated and weather info has been fetched, display local mach 1
+        if local mach 1 has not been calculated but tips speed has been calculated, display tip speed and 'enter location for local mach 1'
+      */ }
       <div className='local-mach-1'>
 
-        {(props.location) &&
+        {(props.location !== '' || props.metersPerSecond !== 0) &&
           <p>{props.units === 'imperial'
-            ? `Tip Speed: ${props.feetPerSecond} FPS | Local Mach 1: ${props.localMach1Mi}MPH`
-            : `Tip Speed: ${props.metersPerSecond} MPS | Local Mach 1: ${props.localMach1Km}KPH`}
+            ? `Tip Speed: ${fpsTipSpeedString} | Local Mach 1: ${fpsLocalMach1String}`
+            : `Tip Speed: ${mpsTipSpeedString} | Local Mach 1: ${mpsLocalMach1String}`}
           </p>}
 
       </div>
