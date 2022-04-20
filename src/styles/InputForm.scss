@@ -81,7 +81,7 @@ label {
   transition: ease-in-out 300ms;
 
   & .unitsLabel {
-    width: 39%;
+    width: 37%;
     background-color: $main-gray;
     color: $faded-blue;
     border: solid 2px $faded-magenta;
@@ -180,8 +180,12 @@ label {
 }
 
 @media screen and (max-width: 540px) {
+  button {
+    height: 30%;
+  }
+
   .input-form {
-    max-width: 90vw;
+    max-width: 95vw;
   }
   
   .submit {
@@ -189,18 +193,12 @@ label {
     font-size: 1em;
   }
 
-  .form, .diameter-units {
-    font-size: 1.3em;
-  }
-
-  [type=radio] {
-    vertical-align: text-top;
-    height: 30px;
-    width: 30px;
+  .form {
+    font-size: 1.5em;
   }
 
   [type=number], [type=text] {
-    // height: 40px;
-    font-size: 1em;
+    height: 1.2em;
+    width: 40%;
   }
 }
