@@ -15,11 +15,21 @@ $blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
   border-bottom-right-radius: 15px;
   box-shadow: 0px 3px 10px black;
   transition: 300ms ease-in-out;
+  animation: slideInHeader ease-in-out 1200ms;
 }
 
 @media screen and (min-width: 540px) {
   .header-div:hover {
       background-color: $deep-blue;
+  }
+
+  @keyframes slideInHeader {
+    0% {
+      transform: translateX(-100vw);
+    }
+    100% {
+      transform: translateX(0vw);
+    }
   }
 }
 
@@ -65,6 +75,10 @@ $blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
 @media screen and (max-width: 540px) {
   .App-logo {
     height: 15vmin;
+  }
+
+  .header-div {
+    max-width: 95vw;
   }
 
   .App-header > a {

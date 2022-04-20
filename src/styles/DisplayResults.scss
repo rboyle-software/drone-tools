@@ -11,10 +11,10 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
   border-bottom: solid 2px $main-magenta;
   width: 100vw;
   margin: 15px 0px;
+  box-shadow: 0px 3px 10px black;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-  box-shadow: 0px 3px 10px black;
 }
 
 .weather, .local-mach-1 {
@@ -39,6 +39,25 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
 @media screen and (max-width: 540px) {
   .weather > p, .local-mach-1 > p {
     font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .outputs {
+    animation: outputsOpacity ease-in 1500ms;
+  }
+
+  
+  @keyframes outputsOpacity {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
 

@@ -48,12 +48,15 @@ label {
   -webkit-user-select: none;
 }
 
+
+
 .input-form {
   font-family: 'B612', sans-serif;
   font-size: 0.75em;
   width: 500px;
   border-radius: 15px;
   box-shadow: 0px 3px 10px black;
+  animation: slideInInputForm ease-in-out 1200ms;
 }
 
 .form {
@@ -176,6 +179,15 @@ label {
 
   .units:hover, .options:hover {
     background-color: $deep-blue;
+  }
+
+  @keyframes slideInInputForm {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(0vw);
+    }
   }
 }
 
