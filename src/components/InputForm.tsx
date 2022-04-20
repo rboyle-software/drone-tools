@@ -41,7 +41,6 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='inputs'>
-
           <label>Prop Dia.{props.units === 'imperial' ? ' (in)' : ' (mm)'}</label>
 
           <input
@@ -79,8 +78,9 @@ export default function InputForm(props: any) {
           <button type="submit" className='submit'>PROP TIP SPEED</button>
         </div>
 
-        <div className='options'>
-          <label>Airspeed{props.units === 'imperial' ? ' (MPH)' : ' (KPH)'}</label>
+        <div className='right-side'>
+        <div className='inputs-right'>
+          <label>Airspeed {props.units === 'imperial' ? '(knots)' : '(KPH)'}</label>
           <input
             className='airspeed'
             type='number'
@@ -90,7 +90,9 @@ export default function InputForm(props: any) {
             onChange={(e) => props.handleNumericInput(e)}
             >
           </input>
+        </div>
 
+        <div className='options'>
           <label>Altitude (ft)</label>
           <input
             className='altitude'
@@ -113,6 +115,7 @@ export default function InputForm(props: any) {
           <button className='submit' onClick={(e) => props.getConditions(e)}>
           WEATHER
           </button>
+        </div>
         </div>
 
       </form>

@@ -1,7 +1,11 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
+$faded-blue: rgb(35, 88, 102);
+$deep-blue: rgb(14, 39, 44);
 $main-magenta: rgb(194, 63, 150);
-$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(0px 0px 8px rgb(163, 49, 125));
+$faded-magenta: rgb(126, 31, 94);
+$deep-magenta: rgb(31, 18, 26);
+$magenta-shadow: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -17,91 +21,74 @@ input[type=number] {
 
 input:focus {
   outline-style: none;
+  border-color: $main-magenta;
   filter: $magenta-shadow;
 }
 
 button {
   height: 50px;
-  width: 80%;
+  width: 65%;
   font-weight: bold;
   color: $main-magenta;
   background-color: $main-gray;
-  border: solid 2px $main-magenta;
+  border: solid 2px $faded-magenta;
   border-radius: 5px;
-  margin: 30px 0px 15px;
+  margin: 15px 0px 15px;
   transition: ease-in-out 300ms;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  cursor: pointer;
 }
 
-.form {
-  font-family: 'B612', sans-serif;
-  font-size: 0.9em;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: 
-    'units1 units2'
-    'inputs options'
-  }
-  
-  ::placeholder {
-    color: #61dafb80;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-  }
-
-.inputs, .options {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-}
-
-.inputs > label, .options > label {
-  font-size: 0.9em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 5px;
+label {
+  margin: 5px 0px 5px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
 }
 
-[type=number], [type=text] {
-  border: solid 2px $main-magenta;
-  border-radius: 5px;
-  height: 1.5em;
-  width: 50%;
-  background-color: $main-gray;
-  color: $main-magenta;
-  font-size: 0.7em;
-  text-align: end;
-  padding-right: 30px;
+.input-form {
+  font-family: 'B612', sans-serif;
+  font-size: 0.75em;
+  width: 500px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 10px black;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  background-color: $deep-magenta;
+  border: solid 2px $faded-blue;
+  border-radius: 15px;
 }
 
 .units {
   display: flex;
+  grid-column: 1 / 3;
+  background-color: $main-gray;
   font-family: Arial;
-  font-size: 0.7em;
+  font-size: 0.9em;
   font-weight: bold;
   justify-content: space-around;
-  grid-column: 1 / 3;
-  margin-bottom: 15px;
+  border-bottom: solid 2px $faded-blue;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  transition: ease-in-out 300ms;
 
   & .unitsLabel {
-    color: $main-blue;
-    border: solid 2px $main-magenta;
-    padding: 10px 10px;
-    margin: 10px 0px;
+    width: 39%;
     background-color: $main-gray;
-    transition: 300ms background-color ease-in-out, filter 300ms ease-in-out;
+    color: $faded-blue;
+    border: solid 2px $faded-magenta;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin: 20px 0px;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out, border-color 200ms ease-in-out;
     cursor: pointer;
   }
 
@@ -113,37 +100,97 @@ button {
   & #imperial:checked + label {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
   }
 
   & #metric:checked + label {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
   }
+}
 
-  & label {
-    width: 35.2%;
-    border-radius: 5px;
-  }
+.inputs {
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / 2;
+  align-items: center;
+}
+
+.options {
+  background-color: $main-gray;
+  border-top: solid 2px $faded-blue;
+  border-left: solid 2px $faded-blue;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 14px;
+  transition: ease-in-out 300ms;
+}
+
+.inputs-right, .options {
+  display: flex;
+  flex-direction: column;
+  grid-column: 2 / 3;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputs, .inputs-right, .options {
+  font-size: 0.8em;
+}
+
+::placeholder {
+  color: $faded-blue;
+  font-size: 1em;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+[type=number], [type=text] {
+  border: solid 2px $faded-magenta;
+  border-radius: 5px;
+  height: 2em;
+  width: 50%;
+  background-color: $main-gray;
+  color: $main-magenta;
+  font-size: 1rem;
+  text-align: end;
+  padding-right: 30px;
+  margin-bottom: 10px;
+  transition: ease-in-out 300ms;
 }
 
 @media screen and (min-width: 540px) {
   button:hover {
     color: $main-gray;
     background-color: $main-magenta;
+    border-color: $main-magenta;
     filter: $magenta-shadow;
+  }
+
+  .unitsLabel:hover, [type=number]:hover, [type=text]:hover {
+    border-color: $main-magenta;
+  }
+
+  .units:hover, .options:hover {
+    background-color: $deep-blue;
   }
 }
 
 @media screen and (max-width: 540px) {
+  .input-form {
+    max-width: 90vw;
+  }
+  
   .submit {
-    height: 80px;
+    height: 60px;
     font-size: 1em;
   }
 
-  .form, .units, .diameter-units {
-    font-size: 1em;
+  .form, .diameter-units {
+    font-size: 1.3em;
   }
 
   [type=radio] {
@@ -153,7 +200,7 @@ button {
   }
 
   [type=number], [type=text] {
-    height: 40px;
+    // height: 40px;
     font-size: 1em;
   }
 }

@@ -12,7 +12,9 @@ export default function App() {
     airspeed: 0,
     altitude: 0,
     battV: 0,
+    feetPerSecond: 0,
     machNumber: 0,
+    metersPerSecond: 0,
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
@@ -21,7 +23,9 @@ export default function App() {
     valueImperial: 0
   });
 
+
   const [conditions, setConditions] = useState({
+    cityZip: '',
     condition: '',
     humidity: 0,
     localMach1Km: 0,
@@ -30,9 +34,9 @@ export default function App() {
     pressure_in: 0,
     pressure_mb: 0,
     temp_c: 0,
-    temp_f: 0,
-    zip: ''
+    temp_f: 0
   });
+
 
   const [modalState, setModalState] = useState({
     modalDisplay: false,
@@ -42,9 +46,10 @@ export default function App() {
 
   const handleUnits = (units: string) => {
 
-    // update Prop Dia value in form input field when units change
+    // select the propDia numeric input element
     const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
 
+    // update the value in propDia input when units radio value changes
     if (propDiameter && (inputs.propDiaIn || inputs.propDiaMm)) {
       propDiameter.valueAsNumber = (units === 'imperial')
       ? inputs.propDiaIn
@@ -60,8 +65,8 @@ export default function App() {
 
 
   const handlePropDia = (propDiameter: number) => {
-    // if MPH is selected, propDiaIn is user input value and propDiaMm is calculated
-    // if KPH is selected, propDiaMm is user input value and propDiaIn is calculated
+    // if Imperial is selected, propDiaIn is user input value and propDiaMm is calculated
+    // if Metric is selected, propDiaMm is user input value and propDiaIn is calculated
     // update propDiaIn and propDiaMm in state
 
     let propDiaIn: number = 0;
@@ -82,7 +87,7 @@ export default function App() {
   }
 
 
-  // handles all numeric inputs to the 'state' object
+  // handles all numeric inputs to the 'inputs' object
   const handleNumericInput = (e: React.BaseSyntheticEvent) => {
     const property: string = e.target.className;
     const value: number = Math.round(e.target.valueAsNumber * 100) / 100 || 0;
@@ -93,10 +98,10 @@ export default function App() {
   }
 
 
-  const handleZip = (zipCode: string) => {
+  const handleCityZip = (cityZip: string) => {
     setConditions({
       ...conditions,
-      zip: zipCode
+      cityZip: cityZip
     });
   }
 
@@ -148,7 +153,7 @@ export default function App() {
 
     // initialize values for calculations
     const inches: number = inputs.propDiaIn;
-    const millimeters: number = inputs.propDiaIn * 25.4;
+    const millimeters: number = inputs.propDiaMm;
     const volts: number = inputs.battV;
     const kilovolts: number = inputs.motorKv;
     const inPerMile: number = 63360;
@@ -158,11 +163,21 @@ export default function App() {
     // initialize variables to calculated prop tip speeds
     const MPH: number = parseFloat(((inches * Math.PI) * (volts * kilovolts) / inPerMile * minPerHour).toFixed(1)) + inputs.airspeed;
     const KPH: number = parseFloat(((millimeters * Math.PI) * (volts * kilovolts) / mmPerKm * minPerHour).toFixed(1)) + inputs.airspeed;
+    const feetPerSecond: number = parseFloat(((((inches * Math.PI) * (volts * kilovolts)) / 12) / 60).toFixed(2)) + inputs.airspeed;
+    const metersPerSecond: number = parseFloat(((((millimeters * Math.PI) * (volts * kilovolts)) / 1000) / 60).toFixed(2)) + inputs.airspeed;
     const machNumber: number = (conditions.localMach1Km) ? parseFloat((KPH / conditions.localMach1Km).toFixed(2)) : 0;
 
-    setInputs({ 
+    /*
+      TODO: airspeed in knots or kph / tip speed in fps or mps
+      add knots to FPS and add KPH to MPS
+      state variables: knots, fps, mps
+    */
+
+    setInputs({
       ...inputs,
+      feetPerSecond: feetPerSecond,
       machNumber: machNumber,
+      metersPerSecond: metersPerSecond,
       valueImperial: MPH,
       valueMetric: KPH
     });
@@ -176,20 +191,20 @@ export default function App() {
 
     e.preventDefault();
 
-    if (conditions.zip === '') {
+    if (conditions.cityZip === '') {
       setModalState({
         ...modalState,
         modalDisplay: true,
-        modalMessage: 'Please enter a postal code!'
+        modalMessage: 'Please enter a city or postal code!'
       });
       return;
     }
 
     // 'fetch-weather' serverless function to mask API key
-    const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
-    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?zip=${conditions.zip}`;
+    // const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?cityZip=${conditions.cityZip}`;
+    const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?cityZip=${conditions.cityZip}`;
 
-    conditions.zip && fetch(wxQueryString, {
+    conditions.cityZip && fetch(wxQueryString, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -236,9 +251,11 @@ export default function App() {
       />
 
       <DisplayResult
-        mach1Mi={conditions.localMach1Mi}
-        mach1Km={conditions.localMach1Km}
         units={inputs.units}
+        feetPerSecond={inputs.feetPerSecond}
+        metersPerSecond={inputs.metersPerSecond}
+        localMach1Mi={conditions.localMach1Mi}
+        localMach1Km={conditions.localMach1Km}
         valueImperial={inputs.valueImperial}
         valueMetric={inputs.valueMetric}
         machNumber={inputs.machNumber}
@@ -257,7 +274,7 @@ export default function App() {
         handleUnits={handleUnits}
         handlePropDia={handlePropDia}
         handleNumericInput={handleNumericInput}
-        handleZip={handleZip}
+        handleZip={handleCityZip}
         calculate={calculate}
         getConditions={getConditions}
         blur={modalState.modalDisplay}
