@@ -27,7 +27,7 @@ input:focus {
 
 button {
   height: 50px;
-  width: 70%;
+  width: 65%;
   font-weight: bold;
   color: $main-magenta;
   background-color: $main-gray;
@@ -38,6 +38,7 @@ button {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  cursor: pointer;
 }
 
 label {
@@ -50,13 +51,14 @@ label {
 .input-form {
   font-family: 'B612', sans-serif;
   font-size: 0.75em;
-  width: 400px;
+  width: 500px;
+  border-radius: 15px;
+  box-shadow: 0px 3px 10px black;
 }
 
 .form {
   display: grid;
   grid-template-columns: 50% 50%;
-  // background-image: linear-gradient(140deg, $deep-magenta, rgba(46, 20, 37, 0));
   background-color: $deep-magenta;
   border: solid 2px $faded-blue;
   border-radius: 15px;
@@ -78,10 +80,6 @@ label {
   -webkit-user-select: none;
   transition: ease-in-out 300ms;
 
-  &:hover {
-    background-color: $deep-blue;
-  }
-
   & .unitsLabel {
     width: 39%;
     background-color: $main-gray;
@@ -89,13 +87,9 @@ label {
     border: solid 2px $faded-magenta;
     border-radius: 10px;
     padding: 10px 10px;
-    margin: 10px 0px;
+    margin: 20px 0px;
     transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out, border-color 200ms ease-in-out;
     cursor: pointer;
-
-    &:hover {
-      border-color: $main-magenta;
-    }
   }
 
   & [type=radio] {
@@ -132,10 +126,6 @@ label {
   border-top-left-radius: 15px;
   border-bottom-right-radius: 14px;
   transition: ease-in-out 300ms;
-
-  &:hover {
-    background-color: $deep-blue;
-  }
 }
 
 .inputs-right, .options {
@@ -170,10 +160,6 @@ label {
   padding-right: 30px;
   margin-bottom: 10px;
   transition: ease-in-out 300ms;
-
-  &:hover {
-    border-color: $main-magenta;
-  }
 }
 
 @media screen and (min-width: 540px) {
@@ -183,16 +169,28 @@ label {
     border-color: $main-magenta;
     filter: $magenta-shadow;
   }
+
+  .unitsLabel:hover, [type=number]:hover, [type=text]:hover {
+    border-color: $main-magenta;
+  }
+
+  .units:hover, .options:hover {
+    background-color: $deep-blue;
+  }
 }
 
 @media screen and (max-width: 540px) {
+  .input-form {
+    max-width: 90vw;
+  }
+  
   .submit {
     height: 60px;
     font-size: 1em;
   }
 
-  .form, .units, .diameter-units {
-    font-size: 1em;
+  .form, .diameter-units {
+    font-size: 1.3em;
   }
 
   [type=radio] {

@@ -1,17 +1,20 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
-$magenta-shadow: drop-shadow(0px 0px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px rgba(138, 29, 102, 0.616)) drop-shadow(-5px 7px 10px rgba(126, 35, 95, 0.479));
+$magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px rgba(138, 29, 102, 0.616)) drop-shadow(-5px 7px 10px rgba(126, 35, 95, 0.479));
 
 .outputs {
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
-  width: 90%;
-  margin-bottom: 25px;
+  border-top: solid 2px $main-magenta;
+  border-bottom: solid 2px $main-magenta;
+  width: 100vw;
+  margin: 15px 0px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  box-shadow: 0px 3px 10px black;
 }
 
 .weather, .local-mach-1 {

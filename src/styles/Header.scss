@@ -1,7 +1,41 @@
 $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
+$faded-blue: rgb(35, 88, 102);
+$deep-blue: rgb(14, 39, 44);
 $main-magenta: rgb(194, 63, 150);
-$blue-shadow: drop-shadow(0px 0px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgba(13, 98, 124, 0.459)) drop-shadow(-2px -8px 15px rgba(40, 159, 195, 0.288));
+$blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgba(13, 98, 124, 0.459)) drop-shadow(-2px -8px 15px rgba(40, 159, 195, 0.288));
+
+
+.header-div {
+  width: 500px;
+  border-left: solid 2px $faded-blue;
+  border-right: solid 2px $faded-blue;
+  border-bottom: solid 2px $faded-blue;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 3px 10px black;
+  transition: 300ms ease-in-out;
+
+  &:hover {
+    background-color: $deep-blue;
+  }
+}
+
+
+.App-header > a {
+  display: block;
+  text-decoration: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+  & p {
+    font-size: 1.5em;
+    font-family: 'Exo', sans-serif;
+    color: $main-blue;
+    filter: $blue-shadow;
+  }
+}
 
 .App-logo {
   margin-top: 40px;
@@ -28,7 +62,7 @@ $blue-shadow: drop-shadow(0px 0px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
 
 @media screen and (max-width: 540px) {
   .App-logo {
-    height: 20vmin;
+    height: 15vmin;
   }
 
   .App-header > a {
@@ -38,19 +72,5 @@ $blue-shadow: drop-shadow(0px 0px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
   .weather, .local-mach-1 {
     font-size: 14px;
     margin-bottom: 10px;
-  }
-}
-
-.App-header > a {
-  text-decoration: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-
-  & p {
-    font-size: 1.5em;
-    font-family: 'Exo', sans-serif;
-    color: $main-blue;
-    filter: $blue-shadow;
   }
 }

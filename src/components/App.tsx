@@ -254,8 +254,8 @@ export default function App() {
         units={inputs.units}
         feetPerSecond={inputs.feetPerSecond}
         metersPerSecond={inputs.metersPerSecond}
-        mach1Mi={conditions.localMach1Mi}
-        mach1Km={conditions.localMach1Km}
+        localMach1Mi={conditions.localMach1Mi}
+        localMach1Km={conditions.localMach1Km}
         valueImperial={inputs.valueImperial}
         valueMetric={inputs.valueMetric}
         machNumber={inputs.machNumber}
