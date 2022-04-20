@@ -17,7 +17,7 @@ The propeller tip speed calculator enables pilots to estimate the max potential 
 
 
 <p align="center">
-  <img src="https://github.com/rboyle-software/drone-tools/blob/b00204324b32c9162394adac3adfb4e8dee72eac/public/r-weather.png" width="300px">
+  <img src="https://github.com/rboyle-software/drone-tools/blob/ba6c0e06b95b88eb8894995629d558bbcfff7a74/public/drone-tools-ui.png" width="600px">
 </p>
 <br><br>
 
