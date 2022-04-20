@@ -36,6 +36,12 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
   }
 }
 
+@media screen and (max-width: 540px) {
+  .weather > p, .local-mach-1 > p {
+    font-size: 12px;
+  }
+}
+
 .output-value {
   color: $main-magenta;
   font-size: 2em;
