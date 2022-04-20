@@ -5,6 +5,8 @@ import Header from './Header';
 import Modal from './Modal';
 import '../styles/App.scss';
 
+import { calculate } from '../utilities/calculate';
+
 
 export default function App() {
 
@@ -43,7 +45,7 @@ export default function App() {
   });
 
 
-  const handleUnits = (units: string) => {
+  const handleUnits = useCallback((units: string) => {
 
     // select the propDia numeric input element
     const propDiameter: HTMLInputElement | null = document.querySelector('.propDia');
@@ -72,10 +74,10 @@ export default function App() {
       ...inputs,
       units: units
     });
-  }
+  }, [inputs]);
 
 
-  const handlePropDia = (propDiameter: number) => {
+  const handlePropDia = useCallback((propDiameter: number) => {
     // if Imperial is selected, propDiaIn is user input value and propDiaMm is calculated
     // if Metric is selected, propDiaMm is user input value and propDiaIn is calculated
     // update propDiaIn and propDiaMm in state
@@ -95,7 +97,7 @@ export default function App() {
       propDiaIn: propDiaIn,
       propDiaMm: propDiaMm
     });
-  }
+  }, [inputs]);
 
 
   const handleAirspeed = (airspeed: number) => {
@@ -148,7 +150,7 @@ export default function App() {
 
 
   const calculateMachNumber = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    console.log(e);
+
     /*
       1. calculate motor unloaded RPM based on battery voltage and motor rating
          source: https://www.rcdronegood.com/brushless-motor-kv-to-rpm/
@@ -163,19 +165,25 @@ export default function App() {
     // validation rules / alert modals
     if (!inputs.propDiaIn || !inputs.propDiaMm) {
       setModalState({
-        ...modalState, modalDisplay: true, modalMessage: 'Please enter propeller diameter!'
+        ...modalState,
+        modalDisplay: true,
+        modalMessage: 'Please enter propeller diameter!'
       });
       return;
     }
     else if (!inputs.battV) {
       setModalState({
-        ...modalState, modalDisplay: true, modalMessage: 'Please enter battery voltage!'
+        ...modalState,
+        modalDisplay: true,
+        modalMessage: 'Please enter battery voltage!'
       });
       return;
     }
     else if (!inputs.motorKv) {
       setModalState({
-        ...modalState, modalDisplay: true, modalMessage: 'Please enter motor power rating!'
+        ...modalState,
+        modalDisplay: true,
+        modalMessage: 'Please enter motor power rating!'
       });
       return;
     }
@@ -185,25 +193,28 @@ export default function App() {
     const millimeters: number = inputs.propDiaMm;
     const volts: number = inputs.battV;
     const kilovolts: number = inputs.motorKv;
+    const airspeedKnots: number = inputs.airspeedKnots;
+    const airspeedKph: number = inputs.airspeedKph;
 
-    // calculations
-    const feetPerSecond: number = parseFloat((((((inches * Math.PI) * (volts * kilovolts)) / 12) / 60) + (inputs.airspeedKnots * 1.68781)).toFixed(2));
-    const metersPerSecond: number = parseFloat((((((millimeters * Math.PI) * (volts * kilovolts)) / 1000) / 60) + (inputs.airspeedKph * 0.277778)).toFixed(2));
-    const machNumber: number = (conditions.localMach1Mps) ? parseFloat((metersPerSecond / conditions.localMach1Mps).toFixed(2)) : 0;
+    interface inputsUD {
+      feetPerSecond: number,
+      machNumber: number,
+      metersPerSecond: number
+    }
 
+    const inputsUpdate: inputsUD = calculate(inches, millimeters, volts, kilovolts, airspeedKnots, airspeedKph, conditions.localMach1Mps);
 
     setInputs({
       ...inputs,
-      feetPerSecond: feetPerSecond,
-      machNumber: machNumber,
-      metersPerSecond: metersPerSecond
+      feetPerSecond: inputsUpdate.feetPerSecond,
+      machNumber: inputsUpdate.machNumber,
+      metersPerSecond: inputsUpdate.metersPerSecond
     });
 
   }, [inputs, modalState, conditions.localMach1Mps]);
 
 
   const getConditions = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    console.log(e);
     /*
       1. build query string using api key and user input zip code
     
