@@ -14,7 +14,7 @@ $blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgb
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   box-shadow: 0px 3px 10px black;
-  transition: 500ms ease-in-out;
+  transition: 500ms;
   animation: slide-in-header ease-in-out 1200ms;
 }
 

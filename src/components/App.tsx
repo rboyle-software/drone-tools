@@ -38,6 +38,7 @@ export default function App() {
   });
 
   const [modalState, setModalState] = useState({
+    modalClass: 'fade-in',
     modalDisplay: false,
     modalMessage: '',
   });
@@ -139,11 +140,20 @@ export default function App() {
 
 
   const handleDismiss = (e: React.BaseSyntheticEvent) => {
+    
     setModalState({
       ...modalState,
+      modalClass: 'fade-out',
+      // modalDisplay: false,
+      // modalMessage: ''
+    })
+    
+    setTimeout(() => setModalState({
+      ...modalState,
+      // modalClass: 'fade-out',
       modalDisplay: false,
       modalMessage: ''
-    })
+    }), 300);
   }
 
 
@@ -274,11 +284,12 @@ export default function App() {
     <div className="App">
 
       {modalState.modalDisplay &&
-      <Modal
-      dismissModal={handleDismiss}
-      message={modalState.modalMessage}
-      blur={modalState.modalDisplay}
-      />}
+        <Modal
+        dismissModal={handleDismiss}
+        message={modalState.modalMessage}
+        display={modalState.modalDisplay}
+        fade={modalState.modalClass}
+        />}
 
       <Header
         blur={modalState.modalDisplay}
