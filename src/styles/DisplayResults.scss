@@ -19,13 +19,16 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
 
 .weather, .local-mach-1 {
   min-height: 1em;
+
+  & > p {
+    color: $main-magenta;
+    font-size: 16px;
+    font-weight: 500;
+    filter: drop-shadow(0px 0px 3px black) drop-shadow(0px 0px 0.5px $main-magenta);
+    animation: appear 300ms;
+  }
 }
 
-.weather > p, .local-mach-1 > p {
-  color: $main-magenta;
-  font-size: 16px;
-  animation: appear 300ms;
-}
 
 @keyframes appear {
   from {
