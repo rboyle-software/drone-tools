@@ -48,15 +48,13 @@ label {
   -webkit-user-select: none;
 }
 
-
-
 .input-form {
   font-family: 'B612', sans-serif;
   font-size: 0.75em;
   width: 500px;
   border-radius: 15px;
   box-shadow: 0px 3px 10px black;
-  transition: 500ms ease-in-out;
+  transition: 500ms;
   animation: slideInInputForm ease-in-out 1200ms;
 }
 
@@ -92,7 +90,7 @@ label {
     border-radius: 10px;
     padding: 10px 10px;
     margin: 20px 0px;
-    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out, border-color 200ms ease-in-out;
+    transition: color 300ms ease-in-out, background-color 300ms ease-in-out, filter 300ms ease-in-out, border-color 300ms ease-in-out;
   }
 
   & [type=radio] {

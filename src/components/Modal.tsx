@@ -5,7 +5,7 @@ export default function Modal(props: any) {
 
   return (
     <div
-      className={`overlay ${props.blur ? 'fade-in' : 'fade-out'}`}
+      className={`overlay ${props.fade}`}
     >
       <div className='modal'>
         {props.message}
