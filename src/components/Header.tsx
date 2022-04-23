@@ -7,7 +7,7 @@ export default function Header(props: any) {
   return (
     <div className='header-div'>
     <header
-    className={`App-header ${props.modalDisplay
+    className={`App-header ${props.blur
       ? 'modal-blur'
       : 'no-blur'}`}
     >

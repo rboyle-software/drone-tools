@@ -29,8 +29,11 @@ $main-magenta: rgb(194, 63, 150);
   font-weight: bold;
 }
 
-.fade-in {
-  animation: appear 300ms;
+@media screen and(max-width: 540px) {
+  button {
+    height: 3em;
+    cursor: default;
+  }
 }
 
 .overlay {
@@ -39,6 +42,10 @@ $main-magenta: rgb(194, 63, 150);
   width: 100vw;
   background-color: rgba(40, 44, 52, 0.5);
   z-index: 1;
+}
+
+.fade-in {
+  animation: appear 300ms;
 }
 
 @keyframes appear {

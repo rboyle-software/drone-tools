@@ -75,7 +75,7 @@ export default function InputForm(props: any) {
             >
           </input>
 
-          <button type="submit" className='submit'>PROP TIP SPEED</button>
+          <button type="submit" className='button'>PROP TIP SPEED</button>
         </div>
 
         <div className='right-side'>
@@ -113,7 +113,7 @@ export default function InputForm(props: any) {
               >
             </input>
 
-            <button className='submit' onClick={(e) => props.getConditions(e)}>
+            <button className='button' onClick={(e) => props.getConditions(e)}>
             WEATHER
             </button>
           </div>

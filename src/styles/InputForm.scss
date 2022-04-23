@@ -92,7 +92,6 @@ label {
     padding: 10px 10px;
     margin: 20px 0px;
     transition: color 200ms ease-in-out, background-color 200ms ease-in-out, filter 200ms ease-in-out, border-color 200ms ease-in-out;
-    cursor: pointer;
   }
 
   & [type=radio] {
@@ -173,6 +172,10 @@ label {
     filter: $magenta-shadow;
   }
 
+  .unitsLabel {
+    cursor: pointer;
+  }
+
   .unitsLabel:hover, [type=number]:hover, [type=text]:hover {
     border-color: $main-magenta;
   }
@@ -194,13 +197,18 @@ label {
 @media screen and (max-width: 540px) {
   button {
     height: 30%;
+    cursor: default;
+  }
+
+  .unitsLabel {
+    cursor: default;
   }
 
   .input-form {
     max-width: 95vw;
   }
   
-  .submit {
+  .button {
     height: 60px;
     font-size: 1em;
   }

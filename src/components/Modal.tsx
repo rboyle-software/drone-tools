@@ -5,12 +5,12 @@ export default function Modal(props: any) {
 
   return (
     <div
-      className={`overlay ${props.blur && 'fade-in'}`}
+      className={`overlay ${props.blur ? 'fade-in' : 'fade-out'}`}
     >
       <div className='modal'>
         {props.message}
         <button
-          onClick={() => props.dismissModal()}
+          onClick={(e) => props.dismissModal(e)}
         >
           OKAY!
         </button>
