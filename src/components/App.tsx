@@ -10,8 +10,6 @@ import { calculate } from '../utilities/calculate';
 
 export default function App() {
 
-
-
   const [inputs, setInputs] = useState({
     airspeedKnots: 0,
     airspeedKph: 0,
@@ -26,7 +24,6 @@ export default function App() {
     units: 'imperial',
   });
 
-
   const [conditions, setConditions] = useState({
     cityZip: '',
     condition: '',
@@ -39,7 +36,6 @@ export default function App() {
     temp_c: 0,
     temp_f: 0
   });
-
 
   const [modalState, setModalState] = useState({
     modalDisplay: false,
@@ -142,7 +138,7 @@ export default function App() {
   }
 
 
-  const handleDismiss = () => {
+  const handleDismiss = (e: React.BaseSyntheticEvent) => {
     setModalState({
       ...modalState,
       modalDisplay: false,
@@ -239,8 +235,7 @@ export default function App() {
     }
 
     // 'fetch-weather' serverless function to mask API key
-    const wxQueryString: string = `https://dronetools.dev/.netlify/functions/fetch-weather?cityZip=${conditions.cityZip}`;
-    // const wxQueryString: string = `http://localhost:8888/.netlify/functions/fetch-weather?cityZip=${conditions.cityZip}`;
+    const wxQueryString: string = `${process.env.REACT_APP_WX_STRING}${conditions.cityZip}`;
 
     conditions.cityZip && fetch(wxQueryString, {
       method: 'GET',
@@ -253,7 +248,7 @@ export default function App() {
       // calculate temperature at user input altitude
       const localTemp_c: number = wx.current.temp_c - (inputs.altitude / 500);
       // calculate local Mach 1 MPS accounting for temp
-      const localMach1Mps: number = parseFloat(331.3 + (0.6 * localTemp_c).toFixed(1));
+      const localMach1Mps: number = parseFloat((331.3 + (0.6 * localTemp_c)).toFixed(1));
       // calculate local Mach 1 MPS -> FPS conversion
       const localMach1Fps: number = parseFloat((localMach1Mps * 3.28084).toFixed(1));
 
@@ -286,7 +281,7 @@ export default function App() {
       />}
 
       <Header
-        modalDisplay={modalState.modalDisplay}
+        blur={modalState.modalDisplay}
       />
 
       <DisplayResult
