@@ -12,7 +12,7 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
   width: 100vw;
   margin: 15px 0px;
   box-shadow: 0px 3px 10px black;
-  transition: 500ms;
+  transition: 300ms;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -26,10 +26,9 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
     font-size: 16px;
     font-weight: 500;
     filter: drop-shadow(0px 0px 3px black) drop-shadow(0px 0px 0.5px $main-magenta);
-    animation: appear 300ms;
+    animation: appear 300ms ease-in-out forwards;
   }
 }
-
 
 @keyframes appear {
   from {
@@ -48,15 +47,14 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
 
 @media screen and (min-width: 540px) {
   .outputs {
-    animation: outputsOpacity ease-in 1400ms;
+    animation: outputsOpacity 1600ms ease-in forwards;
   }
-
 
   @keyframes outputsOpacity {
     0% {
       opacity: 0;
     }
-    60% {
+    70% {
       opacity: 0;
     }
     100% {
