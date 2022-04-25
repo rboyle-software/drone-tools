@@ -76,6 +76,7 @@ label {
   border-bottom: solid 2px $faded-blue;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
+  transition: ease-in-out 300ms;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
