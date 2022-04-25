@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://dronetools.dev/"><img src="https://github.com/rboyle-software/drone-tools/blob/a1cb94f51c795f3afe8f2c3e01e31c3a80b9725c/public/dt-logo-transparent1.png" width="500px"></a>
 </p>
-<br><br><hr>
+<hr>
 
 - Estimate propeller tip speed!
 - Optimize settings to achieve maximum performance!
