@@ -23,7 +23,7 @@ The propeller tip speed calculator enables pilots to estimate the max potential 
 
 ## Contribute to this project!
 
-Please comment or send a message to correct our math or propose additional features.
+Please feel free to create an issue or send a message to correct our math or propose additional features.
 <br><br>
 
 ## To Do:
