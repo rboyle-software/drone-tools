@@ -34,6 +34,7 @@ $main-magenta: rgb(194, 63, 150);
 .modal > button {
   margin-top: 10%;
   font-weight: bold;
+  border-color: $main-magenta;
 }
 
 @media screen and(max-width: 540px) {
@@ -44,7 +45,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .fade-in {
-  animation: appear 500ms ease-in-out forwards;
+  animation: appear 300ms ease-in-out forwards;
 }
 
 @keyframes appear {
@@ -57,7 +58,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .fade-out {
-  animation: disappear 500ms ease-in-out forwards;
+  animation: disappear 300ms ease-in-out forwards;
 }
 
 @keyframes disappear {

@@ -26,7 +26,7 @@ $magenta-shadow: drop-shadow(0px 1px 3px rgb(0, 0, 0)) drop-shadow(3px -7px 15px
     font-size: 16px;
     font-weight: 500;
     filter: drop-shadow(0px 0px 3px black) drop-shadow(0px 0px 0.5px $main-magenta);
-    animation: appear 300ms ease-in-out forwards;
+    animation: appear 500ms ease-in-out forwards;
   }
 }
 

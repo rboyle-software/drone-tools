@@ -21,7 +21,7 @@ export default function App() {
     motorKv: 0,
     propDiaIn: 0,
     propDiaMm: 0,
-    units: 'imperial',
+    units: 'imperial'
   });
 
   const [conditions, setConditions] = useState({
@@ -38,7 +38,7 @@ export default function App() {
   });
 
   const [modalState, setModalState] = useState({
-    modalBlur: '',
+    modalBlur: 'init',
     modalDisplay: false,
     modalFade: 'fade-in',
     modalMessage: ''

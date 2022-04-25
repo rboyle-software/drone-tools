@@ -17,7 +17,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .modal-active {
-  animation: blur 500ms ease-in-out forwards;
+  animation: blur 300ms forwards;
 }
 
 @keyframes blur {
@@ -30,7 +30,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .modal-inactive {
-  animation: no-blur 500ms ease-in-out forwards;
+  animation: no-blur 300ms forwards;
 }
 
 @keyframes no-blur {
