@@ -6,9 +6,7 @@ export default function Header(props: any) {
 
   return (
     <div
-      className={`header-div ${props.blur
-      ? 'modal-blur'
-      : 'no-blur'}`}
+      className={`header-div ${props.blur}`}
     >
       <header className='App-header'>
         <img src={logo} className="App-logo" alt="spinning-logo" />
@@ -18,5 +16,4 @@ export default function Header(props: any) {
       </header>
     </div>
   )
-
 }

@@ -38,9 +38,10 @@ export default function App() {
   });
 
   const [modalState, setModalState] = useState({
-    modalClass: 'fade-in',
+    modalBlur: '',
     modalDisplay: false,
-    modalMessage: '',
+    modalFade: 'fade-in',
+    modalMessage: ''
   });
 
 
@@ -140,20 +141,19 @@ export default function App() {
 
 
   const handleDismiss = (e: React.BaseSyntheticEvent) => {
-    
     setModalState({
       ...modalState,
-      modalClass: 'fade-out',
-      // modalDisplay: false,
-      // modalMessage: ''
-    })
-    
+      modalBlur: 'modal-inactive',
+      modalFade: 'fade-out'
+    });
+
     setTimeout(() => setModalState({
       ...modalState,
-      // modalClass: 'fade-out',
+      modalBlur: 'modal-inactive',
       modalDisplay: false,
+      modalFade: 'fade-out',
       modalMessage: ''
-    }), 300);
+    }), 500);
   }
 
 
@@ -174,7 +174,9 @@ export default function App() {
     if (!inputs.propDiaIn || !inputs.propDiaMm) {
       setModalState({
         ...modalState,
+        modalBlur: 'modal-active',
         modalDisplay: true,
+        modalFade: 'fade-in',
         modalMessage: 'Please enter propeller diameter!'
       });
       return;
@@ -182,7 +184,9 @@ export default function App() {
     else if (!inputs.battV) {
       setModalState({
         ...modalState,
+        modalBlur: 'modal-active',
         modalDisplay: true,
+        modalFade: 'fade-in',
         modalMessage: 'Please enter battery voltage!'
       });
       return;
@@ -190,7 +194,9 @@ export default function App() {
     else if (!inputs.motorKv) {
       setModalState({
         ...modalState,
+        modalBlur: 'modal-active',
         modalDisplay: true,
+        modalFade: 'fade-in',
         modalMessage: 'Please enter motor power rating!'
       });
       return;
@@ -238,7 +244,9 @@ export default function App() {
     if (conditions.cityZip === '') {
       setModalState({
         ...modalState,
+        modalBlur: 'modal-active',
         modalDisplay: true,
+        modalFade: 'fade-in',
         modalMessage: 'Please enter a city or postal code!'
       });
       return;
@@ -281,18 +289,18 @@ export default function App() {
 
 
   return (
-    <div className="App">
+    <div className='App'>
 
       {modalState.modalDisplay &&
         <Modal
         dismissModal={handleDismiss}
         message={modalState.modalMessage}
         display={modalState.modalDisplay}
-        fade={modalState.modalClass}
+        fade={modalState.modalFade}
         />}
 
       <Header
-        blur={modalState.modalDisplay}
+        blur={modalState.modalBlur}
       />
 
       <DisplayResult
@@ -309,7 +317,7 @@ export default function App() {
         wxPressureMb={conditions.pressure_mb}
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
-        blur={modalState.modalDisplay}
+        blur={modalState.modalBlur}
         />
 
       <InputForm
@@ -321,7 +329,7 @@ export default function App() {
         handleZip={handleCityZip}
         calculate={calculateMachNumber}
         getConditions={getConditions}
-        blur={modalState.modalDisplay}
+        blur={modalState.modalBlur}
       />
 
     </div>

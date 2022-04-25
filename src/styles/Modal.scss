@@ -2,6 +2,14 @@ $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
 
+.overlay {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(40, 44, 52, 0.5);
+  z-index: 1;
+}
+
 .modal {
   position: fixed;
   overflow: hidden;
@@ -35,16 +43,8 @@ $main-magenta: rgb(194, 63, 150);
   }
 }
 
-.overlay {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(40, 44, 52, 0.5);
-  z-index: 1;
-}
-
 .fade-in {
-  animation: appear 500ms;
+  animation: appear 500ms ease-in-out forwards;
 }
 
 @keyframes appear {
@@ -57,7 +57,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .fade-out {
-  animation: disappear 300ms;
+  animation: disappear 500ms ease-in-out forwards;
 }
 
 @keyframes disappear {

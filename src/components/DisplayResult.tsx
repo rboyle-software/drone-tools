@@ -13,9 +13,7 @@ export default function DisplayResult(props: any) {
 
   return (
     <div
-      className={`outputs ${props.blur
-        ? 'modal-blur'
-        : 'no-blur'}`}
+      className={`outputs ${props.blur}`}
     >
 
       { /* display current local weather info if data has been fetched from the weather API */ }

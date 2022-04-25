@@ -55,7 +55,6 @@ label {
   border-radius: 15px;
   box-shadow: 0px 3px 10px black;
   transition: 500ms;
-  animation: slideInInputForm ease-in-out 1200ms;
 }
 
 .form {
@@ -80,7 +79,6 @@ label {
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
-  transition: ease-in-out 300ms;
 
   & .unitsLabel {
     width: 37%;
@@ -170,6 +168,10 @@ label {
     background-color: $main-magenta;
     border-color: $main-magenta;
     filter: $magenta-shadow;
+  }
+
+  .input-form {
+    animation: slideInInputForm 1200ms ease-in-out forwards;
   }
 
   .unitsLabel {

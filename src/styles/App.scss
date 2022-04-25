@@ -16,6 +16,28 @@ $main-magenta: rgb(194, 63, 150);
   overflow: hidden;
 }
 
-.modal-blur {
-  filter: blur(2px);
+.modal-active {
+  animation: blur 500ms ease-in-out forwards;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(0px);
+  }
+  100% {
+    filter: blur(4px);
+  }
+}
+
+.modal-inactive {
+  animation: no-blur 500ms ease-in-out forwards;
+}
+
+@keyframes no-blur {
+  0% {
+    filter: blur(4px);
+  }
+  100% {
+    filter: blur(0px);
+  }
 }
