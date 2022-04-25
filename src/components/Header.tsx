@@ -6,10 +6,10 @@ export default function Header(props: any) {
 
   return (
     <div
-      className={`header-div ${props.blur}`}
+      className={`header-wrapper ${props.blur}`}
     >
-      <header className='App-header'>
-        <img src={logo} className="App-logo" alt="spinning-logo" />
+      <header className='header'>
+        <img src={logo} className="app-logo" alt="spinning-logo" />
         <a href="https://github.com/rboyle-software/drone-tools" target="_blank" rel="noreferrer" title="Visit the GitHub repo!">
           <p>DRONE TOOLS</p>
         </a>

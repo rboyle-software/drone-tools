@@ -153,7 +153,7 @@ export default function App() {
       modalDisplay: false,
       modalFade: 'fade-out',
       modalMessage: ''
-    }), 500);
+    }), 300);
   }
 
 
@@ -289,7 +289,7 @@ export default function App() {
 
 
   return (
-    <div className='App'>
+    <div className='app'>
 
       {modalState.modalDisplay &&
         <Modal
