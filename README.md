@@ -26,6 +26,13 @@ The propeller tip speed calculator enables pilots to estimate the max potential 
 Please feel free to create an issue or send a message to correct our math or propose additional features.
 <br><br>
 
+## To run the app locally:
+
+- Fork and Clone this repository
+- Install dependencies
+- Use `npm run run-dev` to launch the app on the development server and host the Netlify function on its own separate development server.
+<br><br>
+
 ## To Do:
 
 - [x] RPM * Prop Max Circumference over Distance / Time = Prop Tip Speed
