@@ -31,17 +31,7 @@ Please feel free to create an issue or send a message to correct our math or pro
 - Fork and Clone this repository
 - Install dependencies
 - Use `npm run run-dev` to launch the app on the development server and host the Netlify function on its own separate development server.
-<br><br>
 
-## To Do:
-
-- [x] RPM * Prop Max Circumference over Distance / Time = Prop Tip Speed
-- [x] Prop Tip Speed + Airspeed = Max Tip Speed?
-- [x] Motor kV rating * battery V rating = unloaded RPM estimate
-- [ ] Account for airframe pitch, horizontal velocity
-- [x] add input field for anticipated airspeed (convert knots to MPH?)
-- [x] API call for temp, pressure, humidity / display local Mach 1
-- [x] make it mobile browser-friendly
 
 <br><br>
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bba96309-cd3a-494c-90f9-cde59c2896a0/deploy-status)](https://app.netlify.com/sites/dronetools/deploys)
