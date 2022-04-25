@@ -5,9 +5,9 @@ export default function Modal(props: any) {
 
   return (
     <div
-      className={`overlay ${props.fade}`}
+      className={`modal-overlay ${props.fade}`}
     >
-      <div className='modal'>
+      <div className='modal-window'>
         {props.message}
         <button
           onClick={(e) => props.dismissModal(e)}

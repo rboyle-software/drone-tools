@@ -2,7 +2,7 @@ $main-gray: rgb(26, 28, 34);
 $main-blue: rgb(97, 219, 250);
 $main-magenta: rgb(194, 63, 150);
 
-.overlay {
+.modal-overlay {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -10,7 +10,7 @@ $main-magenta: rgb(194, 63, 150);
   z-index: 1;
 }
 
-.modal {
+.modal-window {
   position: fixed;
   overflow: hidden;
   display: flex;
@@ -31,9 +31,10 @@ $main-magenta: rgb(194, 63, 150);
   -webkit-user-select: none;
 }
 
-.modal > button {
+.modal-window > button {
   margin-top: 10%;
   font-weight: bold;
+  border-color: $main-magenta;
 }
 
 @media screen and(max-width: 540px) {
@@ -44,7 +45,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .fade-in {
-  animation: appear 500ms ease-in-out forwards;
+  animation: appear 300ms ease-in-out forwards;
 }
 
 @keyframes appear {
@@ -57,7 +58,7 @@ $main-magenta: rgb(194, 63, 150);
 }
 
 .fade-out {
-  animation: disappear 500ms ease-in-out forwards;
+  animation: disappear 300ms ease-in-out forwards;
 }
 
 @keyframes disappear {
