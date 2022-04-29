@@ -1,11 +1,10 @@
 import React, { useState, useCallback } from 'react';
+import { calculate } from '../utilities/calculate';
 import DisplayResult from './DisplayResult';
 import InputForm from './InputForm';
 import Header from './Header';
 import Modal from './Modal';
 import '../styles/App.scss';
-
-import { calculate } from '../utilities/calculate';
 
 
 export default function App() {
@@ -295,9 +294,8 @@ export default function App() {
         <Modal
         dismissModal={handleDismiss}
         message={modalState.modalMessage}
-        display={modalState.modalDisplay}
         fade={modalState.modalFade}
-        />}
+      />}
 
       <Header
         blur={modalState.modalBlur}
@@ -318,7 +316,7 @@ export default function App() {
         wxTempC={conditions.temp_c}
         wxTempF={conditions.temp_f}
         blur={modalState.modalBlur}
-        />
+      />
 
       <InputForm
         units={inputs.units}
@@ -326,7 +324,7 @@ export default function App() {
         handlePropDia={handlePropDia}
         handleAirspeed={handleAirspeed}
         handleNumericInput={handleNumericInput}
-        handleZip={handleCityZip}
+        handleCityZip={handleCityZip}
         calculate={calculateMachNumber}
         getConditions={getConditions}
         blur={modalState.modalBlur}

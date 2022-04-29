@@ -1,14 +1,15 @@
+import { InputProps } from '../utilities/PropTypes';
 import '../styles/InputForm.scss'
 
 
-export default function InputForm(props: any) {
+export default function InputForm({ calculate, getConditions, handleAirspeed, handleCityZip, handleNumericInput, handlePropDia, handleUnits, blur, units }: InputProps) {
 
   return (
     <div
-      className={`input-form ${props.blur}`}
+      className={`input-form ${blur}`}
     >
 
-      <form className='form' onSubmit={(e) => props.calculate(e)}>
+      <form className='form' onSubmit={(e) => calculate(e)}>
 
         <div className='units'>
             <input
@@ -16,8 +17,8 @@ export default function InputForm(props: any) {
               type='radio'
               name='units'
               value='imperial'
-              checked={props.units === 'imperial'}
-              onChange={(e) => props.handleUnits(e.target.value)}
+              checked={units === 'imperial'}
+              onChange={(e) => handleUnits(e.target.value)}
               >
             </input>
           <label className='unitsLabel' htmlFor='imperial'>
@@ -29,8 +30,8 @@ export default function InputForm(props: any) {
               type='radio'
               name='units'
               value='metric'
-              checked={props.units === 'metric'}
-              onChange={(e) => props.handleUnits(e.target.value)}
+              checked={units === 'metric'}
+              onChange={(e) => handleUnits(e.target.value)}
               >
             </input>
           <label className='unitsLabel' htmlFor='metric'>
@@ -39,7 +40,7 @@ export default function InputForm(props: any) {
         </div>
 
         <div className='inputs'>
-          <label>Prop Dia.{props.units === 'imperial' ? ' (in)' : ' (mm)'}</label>
+          <label>Prop Dia.{units === 'imperial' ? ' (in)' : ' (mm)'}</label>
 
           <input
             className='propDia'
@@ -47,7 +48,7 @@ export default function InputForm(props: any) {
             type='number'
             step='any'
             inputMode='decimal'
-            onChange={(e) => props.handlePropDia(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+            onChange={(e) => handlePropDia(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
             >
           </input>
 
@@ -58,7 +59,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleNumericInput(e)}
+            onChange={(e) => handleNumericInput(e)}
             >
           </input>
 
@@ -69,7 +70,7 @@ export default function InputForm(props: any) {
             inputMode='decimal'
             step='any'
             placeholder='0'
-            onChange={(e) => props.handleNumericInput(e)}
+            onChange={(e) => handleNumericInput(e)}
             >
           </input>
 
@@ -78,7 +79,7 @@ export default function InputForm(props: any) {
 
         <div className='right-side'>
           <div className='inputs-right'>
-            <label>Airspeed {props.units === 'imperial' ? '(knots)' : '(KPH)'}</label>
+            <label>Airspeed {units === 'imperial' ? '(knots)' : '(KPH)'}</label>
             <input
               id='airspeed'
               className='airspeedKnots'
@@ -86,7 +87,7 @@ export default function InputForm(props: any) {
               inputMode='decimal'
               step='any'
               placeholder='0'
-              onChange={(e) => props.handleAirspeed(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
+              onChange={(e) => handleAirspeed(Math.round(e.target.valueAsNumber * 100) / 100 || 0)}
               >
             </input>
           </div>
@@ -99,7 +100,7 @@ export default function InputForm(props: any) {
               inputMode='decimal'
               step='any'
               placeholder='0'
-              onChange={(e) => props.handleNumericInput(e)}
+              onChange={(e) => handleNumericInput(e)}
               >
             </input>
 
@@ -107,11 +108,11 @@ export default function InputForm(props: any) {
             <input
               type='text'
               placeholder='0'
-              onChange={(e) => props.handleZip(e.target.value)}
+              onChange={(e) => handleCityZip(e.target.value)}
               >
             </input>
 
-            <button className='button' onClick={(e) => props.getConditions(e)}>
+            <button className='button' onClick={(e) => getConditions(e)}>
             WEATHER
             </button>
           </div>
