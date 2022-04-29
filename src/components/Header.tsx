@@ -1,12 +1,13 @@
-import '../styles/Header.scss';
 import logo from '../assets/logo.png';
+import { HeaderProps } from '../utilities/PropTypes';
+import '../styles/Header.scss';
 
 
-export default function Header(props: any) {
+export default function Header({ blur }: HeaderProps) {
 
   return (
     <div
-      className={`header-wrapper ${props.blur}`}
+      className={`header-wrapper ${blur}`}
     >
       <header className='header'>
         <img src={logo} className="app-logo" alt="spinning-logo" />
