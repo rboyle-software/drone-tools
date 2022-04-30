@@ -1,8 +1,7 @@
-
 export type ModalProps = {
   fade: string
   message: string,
-  dismissModal: any,
+  dismissModal: any
 };
 
 export type HeaderProps = {
