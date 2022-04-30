@@ -1,5 +1,5 @@
-import logo from '../assets/logo.png';
 import { HeaderProps } from '../utilities/PropTypes';
+import logo from '../assets/logo.png';
 import '../styles/Header.scss';
 
 
