@@ -1,7 +1,4 @@
-$main-gray: rgb(26, 28, 34);
-$main-blue: rgb(97, 218, 251);
-$main-magenta: rgb(194, 63, 150);
-
+@import './abstracts/colors';
 
 .app {
   min-height: 100vh;

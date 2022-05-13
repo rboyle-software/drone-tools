@@ -1,11 +1,5 @@
-$main-gray: rgb(26, 28, 34);
-$main-blue: rgb(97, 219, 250);
-$faded-blue: rgb(35, 88, 102);
-$deep-blue: rgb(14, 39, 44);
-$main-magenta: rgb(194, 63, 150);
-$faded-magenta: rgb(126, 31, 94);
-$deep-magenta: rgb(31, 18, 26);
-$magenta-shadow: drop-shadow(0px 0px 2px rgb(0, 0, 0)) drop-shadow(-5px -5px 15px rgba(117, 19, 84, 0.705)) drop-shadow(2px 8px 10px rgba(177, 34, 129, 0.356));
+@import './abstracts/colors';
+@import './abstracts/shadows';
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

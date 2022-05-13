@@ -1,6 +1,5 @@
-$main-gray: rgb(26, 28, 34);
-$main-blue: rgb(97, 219, 250);
-$main-magenta: rgb(194, 63, 150);
+@import './abstracts/colors';
+@import './abstracts/shadows';
 
 .modal-overlay {
   position: fixed;
