@@ -1,10 +1,5 @@
-$main-gray: rgb(26, 28, 34);
-$main-blue: rgb(97, 219, 250);
-$faded-blue: rgb(35, 88, 102);
-$deep-blue: rgb(14, 39, 44);
-$main-magenta: rgb(194, 63, 150);
-$blue-shadow: drop-shadow(0px 2px 5px rgb(0, 0, 0)) drop-shadow(5px 6px 15px rgba(13, 98, 124, 0.459)) drop-shadow(-2px -8px 15px rgba(40, 159, 195, 0.288));
-
+@import './abstracts/colors';
+@import './abstracts/shadows';
 
 .header-wrapper {
   width: 500px;
