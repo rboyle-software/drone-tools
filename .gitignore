@@ -27,5 +27,7 @@ yarn-error.log*
 /src/references
 /temp
 
+/.vscode
+
 # Local Netlify folder
 .netlify

@@ -140,6 +140,7 @@ export default function App() {
 
 
   const handleDismiss = (e: React.BaseSyntheticEvent) => {
+
     setModalState({
       ...modalState,
       modalBlur: 'modal-inactive',
@@ -180,7 +181,7 @@ export default function App() {
       });
       return;
     }
-    else if (!inputs.battV) {
+    if (!inputs.battV) {
       setModalState({
         ...modalState,
         modalBlur: 'modal-active',
@@ -190,7 +191,7 @@ export default function App() {
       });
       return;
     }
-    else if (!inputs.motorKv) {
+    if (!inputs.motorKv) {
       setModalState({
         ...modalState,
         modalBlur: 'modal-active',
@@ -254,7 +255,7 @@ export default function App() {
     // 'fetch-weather' serverless function to mask API key
     const wxQueryString: string = `${process.env.REACT_APP_WX_STRING}${conditions.cityZip}`;
 
-    conditions.cityZip && fetch(wxQueryString, {
+    fetch(wxQueryString, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
